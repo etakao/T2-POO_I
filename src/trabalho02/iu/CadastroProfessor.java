@@ -120,7 +120,7 @@ public class CadastroProfessor extends javax.swing.JFrame {
                         .addComponent(lbNome)
                         .addGap(62, 62, 62)
                         .addComponent(jLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(btnLimpar))
@@ -151,10 +151,10 @@ public class CadastroProfessor extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         if (txtNome.getText() == null || txtNome.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Digite o nome do aluno antes de salvar!!");
+            JOptionPane.showMessageDialog(null, "Digite o nome do Professor antes de salvar!!");
             txtNome.requestFocus();
         } else if (txtID.getText() == null || txtID.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Digite o ID do aluno antes de salvar!!");
+            JOptionPane.showMessageDialog(null, "Digite o ID do Professor antes de salvar!!");
             txtID.requestFocus();
         } else if (txtTitulacao.getText() == null || txtTitulacao.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Digite a Titulação do Professor  antes de salvar!!");
