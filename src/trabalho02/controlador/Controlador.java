@@ -6,6 +6,7 @@ package trabalho02.controlador;
 
 import trabalho02.modelo.Biblioteca;
 import trabalho02.modelo.Config;
+import trabalho02.modelo.Usuario;
 
 /**
  *
@@ -29,5 +30,9 @@ public class Controlador {
     
     public void addLivro(String codLivro, String nome, int ano) {
         biblio.addLivro(codLivro, nome, ano);
+    }
+    
+    public void addEmprestimo(String codEmprestimo, Usuario usuario) {
+        biblio.addEmprestimo(codEmprestimo, usuario);
     }
 }
