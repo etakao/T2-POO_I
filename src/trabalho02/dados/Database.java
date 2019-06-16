@@ -54,4 +54,37 @@ public class Database {
             contL++;
         }
     }
+    
+    public void addEmprestimo(Emprestimo e){
+        if (contE < MAX_EMPRESTIMO ){
+            emprestimos[contE] = e;
+            contE++;
+        }
+    }
+
+    public int getContU() {
+        return contU;
+    }
+
+    public int getContE() {
+        return contE;
+    }
+
+    public int getContL() {
+        return contL;
+    }
+    
+    
+
+    public Usuario[] getUsuarios() {
+        return usuarios;
+    }
+
+    public Emprestimo[] getEmprestimos() {
+        return emprestimos;
+    }
+
+    public Livro[] getLivros() {
+        return livros;
+    }
 }
