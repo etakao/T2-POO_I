@@ -216,6 +216,7 @@ public class IUPrincipal extends javax.swing.JFrame {
         alunos.setTitle("Cadastro de alunos");
         alunos.setVisible(true);
         alunos.setDefaultCloseOperation(CadastroAlunos.DISPOSE_ON_CLOSE);
+        //eu estou testando
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
