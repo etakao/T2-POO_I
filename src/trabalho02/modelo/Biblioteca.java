@@ -15,9 +15,9 @@ public class Biblioteca {
     private static Biblioteca instancia;
    private Config configuracoes;
    private Database db = Database.getInstance();
-   private ArrayList<Usuario>usuarios;
-   private ArrayList<Livro>livros;
-   private ArrayList<Emprestimo>emprestimos;
+   private ArrayList<Usuario>usuarios = new ArrayList<Usuario>();
+   private ArrayList<Livro>livros = new ArrayList<Livro>();
+   private ArrayList<Emprestimo>emprestimos= new ArrayList<Emprestimo>();
 
     public Biblioteca() {       
         this.configuracoes = new Config();
@@ -42,12 +42,15 @@ public class Biblioteca {
         Aluno aluno = new Aluno(codUsuario, nome, curso, ano, configuracoes.getDiasAluno());
         db.addUsuario(aluno);
         usuarios.add(aluno);
+
     }
 
     public void addProfessor(String codUsuario, String nome, String titulacao){
         Professor professor = new Professor(codUsuario, nome, titulacao, configuracoes.getDiasProfessor());
-        db.addUsuario(professor);
         usuarios.add(professor);
+        db.addUsuario(professor);
+        
+
     }
 
     public void addLivro(String codLivro, String nome, int ano) {
