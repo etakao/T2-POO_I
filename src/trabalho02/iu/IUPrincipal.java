@@ -107,9 +107,19 @@ public class IUPrincipal extends javax.swing.JFrame {
         jMenu4.setText("Relatórios");
 
         jMenuItem6.setText("Todos Usuários");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem6);
 
         jMenuItem7.setText("Todos Alunos");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem7);
 
         jMenuItem8.setText("Todos Professores");
@@ -131,13 +141,28 @@ public class IUPrincipal extends javax.swing.JFrame {
         jMenu4.add(jMenuItem9);
 
         jMenuItem10.setText("Livros Disponíveis");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem10);
 
         jMenuItem11.setText("Livros Emprestados");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem11);
         jMenu4.add(jSeparator2);
 
         jMenuItem12.setText("Livros com Atraso");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem12);
 
         jMenuItem13.setText("Usuários com Atraso");
@@ -213,7 +238,10 @@ public class IUPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        // TODO add your handling code here:
+        RelatorioTodosLivros livros = new RelatorioTodosLivros();
+        livros.setTitle("Relatório de todos os livros");
+        livros.setVisible(true);
+        livros.setDefaultCloseOperation(RelatorioTodosLivros.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -237,6 +265,41 @@ public class IUPrincipal extends javax.swing.JFrame {
         livros.setVisible(true);
         livros.setDefaultCloseOperation(CadastroLivros.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        RelatorioTodosUsuarios usuarios = new RelatorioTodosUsuarios();
+        usuarios.setTitle("Relatório de todos os usuarios");
+        usuarios.setVisible(true);
+        usuarios.setDefaultCloseOperation(RelatorioTodosUsuarios.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        RelatorioLivrosDisponiveis livros = new RelatorioLivrosDisponiveis();
+        livros.setTitle("Relatório de livros disponíveis");
+        livros.setVisible(true);
+        livros.setDefaultCloseOperation(RelatorioLivrosDisponiveis.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        RelatorioLivrosEmprestados livros = new RelatorioLivrosEmprestados();
+        livros.setTitle("Relatório de livros emprestados");
+        livros.setVisible(true);
+        livros.setDefaultCloseOperation(RelatorioLivrosEmprestados.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        RelatorioLivrosAtrasados livros = new RelatorioLivrosAtrasados();
+        livros.setTitle("Relatório de livros atrasados");
+        livros.setVisible(true);
+        livros.setDefaultCloseOperation(RelatorioLivrosAtrasados.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        RelatorioTodosAlunos usuarios = new RelatorioTodosAlunos();
+        usuarios.setTitle("Relatório de todos os alunos");
+        usuarios.setVisible(true);
+        usuarios.setDefaultCloseOperation(RelatorioTodosAlunos.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
