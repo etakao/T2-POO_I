@@ -85,6 +85,11 @@ public class IUPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenu3);
 
         jMenuItem3.setText("Livros");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
@@ -224,6 +229,13 @@ public class IUPrincipal extends javax.swing.JFrame {
         professores.setVisible(true);
         professores.setDefaultCloseOperation(CadastroProfessor.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        CadastroLivros livros = new CadastroLivros();
+        livros.setTitle("Cadastro de livros");
+        livros.setVisible(true);
+        livros.setDefaultCloseOperation(CadastroLivros.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
