@@ -4,6 +4,7 @@
  */
 package trabalho02.modelo;
 
+import java.util.ArrayList;
 import trabalho02.dados.Database;
 
 /**
@@ -11,11 +12,22 @@ import trabalho02.dados.Database;
  * @author Danilo Medeiros Eler
  */
 public class Biblioteca {
+    private static Biblioteca instancia;
    private Config configuracoes;
    private Database db = Database.getInstance();
+   private ArrayList<Usuario>usuarios;
+   private ArrayList<Livro>livros;
+   private ArrayList<Emprestimo>emprestimos;
 
     public Biblioteca() {       
         this.configuracoes = new Config();
+    }
+    
+    public static Biblioteca getInstance(){
+        if (instancia == null){
+            instancia = new Biblioteca();
+        }
+        return instancia;
     }
 
     public Config getConfiguracoes() {
@@ -29,17 +41,40 @@ public class Biblioteca {
     public void addAluno(String codUsuario, String nome, String curso, int ano){
         Aluno aluno = new Aluno(codUsuario, nome, curso, ano, configuracoes.getDiasAluno());
         db.addUsuario(aluno);
+        usuarios.add(aluno);
     }
 
     public void addProfessor(String codUsuario, String nome, String titulacao){
         Professor professor = new Professor(codUsuario, nome, titulacao, configuracoes.getDiasProfessor());
         db.addUsuario(professor);
+        usuarios.add(professor);
     }
 
     public void addLivro(String codLivro, String nome, int ano) {
         Livro livro = new Livro(codLivro, nome, ano);
         db.addLivro(livro);
+        livros.add(livro);
     }
+    
+    public void addEmprestimo(String codEmprestimo, Usuario usuario) {
+        Emprestimo emprestimo = new Emprestimo(codEmprestimo, usuario);
+        db.addEmprestimo(emprestimo);
+        emprestimos.add(emprestimo);
+    }
+
+    public ArrayList<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public ArrayList<Livro> getLivros() {
+        return livros;
+    }
+
+    public ArrayList<Emprestimo> getEmprestimos() {
+        return emprestimos;
+    }
+    
+    
 
     
 
