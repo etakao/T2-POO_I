@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import trabalho02.modelo.Biblioteca;
+import trabalho02.modelo.Livro;
 import trabalho02.modelo.Usuario;
 
 /*
@@ -17,34 +18,34 @@ import trabalho02.modelo.Usuario;
  *
  * @author luskas
  */
-public class LocalizaUsuario extends javax.swing.JDialog {
+public class LocalizaLivro extends javax.swing.JDialog {
     
-    private String nome;
-    private String codUsuario;
+    private String CodLivro;
+    private String titulo;
     
     private Biblioteca b = Biblioteca.getInstance();
 
-    public String getCodUsuario() {
-        return codUsuario;
+    public String getCodLivro() {
+        return CodLivro;
     }
 
-    public String getNome() {
-        return nome;
+    public String getTitulo() {
+        return titulo;
     }
     /**
      * Creates new form LocalizaUsuario
      */
-    public LocalizaUsuario(java.awt.Frame parent, boolean modal) {
+    public LocalizaLivro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         
-        ArrayList<Usuario>usuarios = b.getUsuarios();
-        DefaultTableModel model = (DefaultTableModel)TbUsuarios.getModel();
+        ArrayList<Livro>livros = b.getLivros();
+        DefaultTableModel model = (DefaultTableModel)TbLivros.getModel();
         
-        for (Usuario u: usuarios) {
+        for (Livro l: livros) {
             Object[] linha = new Object[2];
-            linha[0] = u.getCodUsuario();
-            linha[1] = u.getNome();
+            linha[0] = l.getCodLivro();
+            linha[1] = l.getNome();
             model.addRow(linha);
             
         }
@@ -60,17 +61,17 @@ public class LocalizaUsuario extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        TbUsuarios = new javax.swing.JTable();
+        TbLivros = new javax.swing.JTable();
         btnSelecionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        TbUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        TbLivros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Nome"
+                "Código", "Título"
             }
         ) {
             Class[] types = new Class [] {
@@ -88,7 +89,7 @@ public class LocalizaUsuario extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(TbUsuarios);
+        jScrollPane1.setViewportView(TbLivros);
 
         btnSelecionar.setText("Selecionar");
         btnSelecionar.addActionListener(new java.awt.event.ActionListener() {
@@ -131,15 +132,15 @@ public class LocalizaUsuario extends javax.swing.JDialog {
 
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
         // TODO add your handling code here:
-        if (TbUsuarios.getSelectedRowCount() > 0) {
-            int index = TbUsuarios.getSelectedRow();
-            this.codUsuario = (String) TbUsuarios.getModel().getValueAt(index, 0);
-            this.nome = (String) TbUsuarios.getModel().getValueAt(index, 1);
+        if (TbLivros.getSelectedRowCount() > 0) {
+            int index = TbLivros.getSelectedRow();
+            this.CodLivro = (String) TbLivros.getModel().getValueAt(index, 0);
+            this.titulo = (String) TbLivros.getModel().getValueAt(index, 1);
             this.setVisible(false);
         }
         else {
             JOptionPane.showMessageDialog(null,"É necessário selecionar um usuário");
-            this.codUsuario = null;
+            this.CodLivro = null;
         }
     }//GEN-LAST:event_btnSelecionarActionPerformed
 
@@ -164,20 +165,21 @@ public class LocalizaUsuario extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LocalizaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LocalizaLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LocalizaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LocalizaLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LocalizaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LocalizaLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LocalizaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LocalizaLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                LocalizaUsuario dialog = new LocalizaUsuario(new javax.swing.JFrame(), true);
+                LocalizaLivro dialog = new LocalizaLivro(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -190,7 +192,7 @@ public class LocalizaUsuario extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TbUsuarios;
+    private javax.swing.JTable TbLivros;
     private javax.swing.JButton btnSelecionar;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
