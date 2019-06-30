@@ -9,6 +9,7 @@ import trabalho02.modelo.Biblioteca;
 import trabalho02.modelo.Usuario;
 import trabalho02.dados.Database;
 import trabalho02.modelo.Professor;
+import trabalho02.modelo.Emprestimo;
 /**
  *
  * @author Guga
@@ -16,15 +17,15 @@ import trabalho02.modelo.Professor;
 public class RelatorioProfessor extends javax.swing.JFrame {
   Database db = Database.getInstance();
     Usuario u[] = db.getUsuarios();
-
+     Emprestimo e[]= db.getEmprestimos();
+       int j;
     /**
      * Creates new form RelatorioProfessor
      */
     public RelatorioProfessor() {
         initComponents();
         
-        
-        
+       
       
         for(int i = 0; i< db.getContU(); i++){
             if  (u[i] instanceof Professor){
@@ -50,6 +51,7 @@ public class RelatorioProfessor extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        cbNome.setToolTipText(",");
         cbNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbNomeActionPerformed(evt);
@@ -60,7 +62,6 @@ public class RelatorioProfessor extends javax.swing.JFrame {
 
         txtDados.setColumns(20);
         txtDados.setRows(5);
-        txtDados.setText(" Nome\t  ID      Titulação\tEmprestimo\tAtraso ");
         jScrollPane2.setViewportView(txtDados);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -94,15 +95,45 @@ public class RelatorioProfessor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNomeActionPerformed
-        
+           txtDados.append( "Nome \t ID \t Titulação\t Emprestimo \t Atraso\n\n\n" );
+      
         for(int i = 0; i< db.getContU(); i++){
-              txtDados.setText( "Nome \t ID \t Titulação \n" );
-              
+     
         if (((String)cbNome.getSelectedItem()).equals(u[i].getNome())){
-                txtDados.setText( u[i].getNome() + "\t" 
-                               + u[i].getCodUsuario() + "\t" + u[i].getTitulacao() );
-            }
-        }
+            j =db.getContE();
+           if(j !=0){
+               for(int j =0; j<db.getContE();j++){
+                if(u[i].getCodUsuario() == e[j].getCodUsuario()){
+                     txtDados.append( u[i].getNome() + "\t" 
+                               + u[i].getCodUsuario() + "\t"
+                               + ((Professor)u[i]).getTitulacao()+ "\t"
+                               + "Sim \t"
+                               + "Sim \n"
+                               + "---------------------------------------------------------------------------------------\n\n");
+                 }
+            
+              
+                else { 
+                    txtDados.append( u[i].getNome() + "\t" 
+                               + u[i].getCodUsuario() + "\t"
+                               + ((Professor)u[i]).getTitulacao()+ "\t"
+                               + "Não \t"
+                               + "Não \n"
+                               + "----------------------------------------------------------------------------------------\n\n");
+                   }
+                }   
+             }
+              else { 
+                    txtDados.append( u[i].getNome() + "\t" 
+                               + u[i].getCodUsuario() + "\t"
+                               + ((Professor)u[i]).getTitulacao()+ "\t"
+                               + "Não \t"
+                               + "Não \n"
+                               + "----------------------------------------------------------------------------------------\n\n");
+                }
+            
+             }
+        }   
     }//GEN-LAST:event_cbNomeActionPerformed
 
     /**
