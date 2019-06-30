@@ -21,6 +21,9 @@ public class Biblioteca {
 
     public Biblioteca() {       
         this.configuracoes = new Config();
+        usuarios = new ArrayList<>();
+        livros = new ArrayList<>();
+        emprestimos = new ArrayList<>();
     }
     
     public static Biblioteca getInstance(){

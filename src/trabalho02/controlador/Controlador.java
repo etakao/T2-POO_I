@@ -14,7 +14,7 @@ import trabalho02.modelo.Usuario;
  */
 public class Controlador {
 
-    private Biblioteca biblio = new Biblioteca();
+    private Biblioteca biblio = Biblioteca.getInstance();
     
     public Config getConfiguracoes() {
         return biblio.getConfiguracoes();

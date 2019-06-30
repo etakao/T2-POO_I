@@ -70,5 +70,12 @@ public class Emprestimo implements Serializable {
         this.itens = itens;
     }
     
+    public void addItem (Item item) {
+        itens.add(item);
+    }
+    
+    public void possuiPendencia() {
+        
+    }
 
 }
