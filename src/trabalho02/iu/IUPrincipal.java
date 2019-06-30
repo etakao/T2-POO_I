@@ -271,14 +271,14 @@ public class IUPrincipal extends javax.swing.JFrame {
         livros.setDefaultCloseOperation(CadastroLivros.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-<<<<<<< HEAD
+
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         RelatorioProfessor professor = new RelatorioProfessor();
         professor.setTitle("Relatorio de professor");
         professor.setVisible(true);
         professor.setDefaultCloseOperation(RelatorioProfessor.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
-=======
+
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         RelatorioTodosUsuarios usuarios = new RelatorioTodosUsuarios();
         usuarios.setTitle("Relatório de todos os usuarios");
@@ -313,7 +313,7 @@ public class IUPrincipal extends javax.swing.JFrame {
         usuarios.setVisible(true);
         usuarios.setDefaultCloseOperation(RelatorioTodosAlunos.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
->>>>>>> Erick
+
 
     /**
      * @param args the command line arguments
