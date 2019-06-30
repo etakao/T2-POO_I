@@ -30,7 +30,6 @@ public class CadastroLivros extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtNome = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -39,12 +38,6 @@ public class CadastroLivros extends javax.swing.JFrame {
         txtAnoL = new javax.swing.JTextField();
         btnSalvarL = new javax.swing.JButton();
         btnLimparL = new javax.swing.JButton();
-
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
-            }
-        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,29 +85,27 @@ public class CadastroLivros extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(txtAnoL, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtIDL)
-                            .addComponent(txtNomeL)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnLimparL)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSalvarL)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                        .addComponent(btnSalvarL))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNomeL, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                            .addComponent(txtIDL)
+                            .addComponent(txtAnoL))))
+                .addGap(0, 14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtNomeL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -135,22 +126,6 @@ public class CadastroLivros extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
-
-    private void txtNomeLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeLActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeLActionPerformed
-
-    private void txtIDLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDLActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDLActionPerformed
-
-    private void txtAnoLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnoLActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAnoLActionPerformed
 
     private void btnSalvarLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarLActionPerformed
         if (txtNomeL.getText() == null || txtNomeL.getText().trim().equals("")) {
@@ -180,6 +155,18 @@ public class CadastroLivros extends javax.swing.JFrame {
         txtAnoL.setText("");
         txtNomeL.requestFocus();
     }//GEN-LAST:event_btnLimparLActionPerformed
+
+    private void txtNomeLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeLActionPerformed
+
+    private void txtIDLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDLActionPerformed
+
+    private void txtAnoLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnoLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAnoLActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,7 +211,6 @@ public class CadastroLivros extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField txtAnoL;
     private javax.swing.JTextField txtIDL;
-    private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNomeL;
     // End of variables declaration//GEN-END:variables
 }
