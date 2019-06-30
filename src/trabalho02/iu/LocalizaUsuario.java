@@ -24,14 +24,13 @@ public class LocalizaUsuario extends javax.swing.JFrame {
      */
     public LocalizaUsuario() {
         Usuario[] usuarios = db.getUsuarios();
-        DefaultTableModel modelo;
-        modelo = new DefaultTableModel();
+        TableModel model = TbUsuarios.getModel();
         
         for (int i=0; i<db.getContU(); i++) {
             Object[] linha = new Object[2];
             linha[0] = usuarios[i].getCodUsuario();
             linha[1] = usuarios[i].getNome();
-            modelo.addRow(linha);
+            model.addRow(linha);
             
         }
         initComponents();
