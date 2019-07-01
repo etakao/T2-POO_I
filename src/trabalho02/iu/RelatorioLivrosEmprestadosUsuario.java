@@ -8,24 +8,33 @@ package trabalho02.iu;
 import java.util.ArrayList;
 import trabalho02.modelo.Biblioteca;
 import trabalho02.modelo.Livro;
+import trabalho02.modelo.Emprestimo;
+import trabalho02.modelo.Item;
 /**
  *
  * @author Erick Yoshike and now Luskas
  */
-public class RelatorioLivrosEmprestados extends javax.swing.JFrame {
- Biblioteca b = Biblioteca.getInstance();
+public class RelatorioLivrosEmprestadosUsuario extends javax.swing.JFrame {
+    Biblioteca b = Biblioteca.getInstance();
+    Emprestimo e = Emprestimo.getInstance();
 
+        ArrayList<Emprestimo>emprestimos = b.getEmprestimos();
+        ArrayList<Item>itens;
         ArrayList<Livro>livros = b.getLivros();
     /**
      * Creates new form RelatorioTodosUsuarios
      */
-    public RelatorioLivrosEmprestados() {
+    public RelatorioLivrosEmprestadosUsuario() {
         initComponents();
         
         
 
-        for (Livro l: livros) {
-            
+        for (Emprestimo e1: emprestimos) {
+            itens = e1.getItens();
+            for (Item i : itens) {
+                i.getCodLivro();
+                
+            }
             if (l.estaEmprestado()) {
                 jTextArea1.append("Código do livro: " + l.getCodLivro()
                     + "\nNome do livro: " + l.getNome()
@@ -81,48 +90,10 @@ public class RelatorioLivrosEmprestados extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RelatorioLivrosEmprestados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RelatorioLivrosEmprestados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RelatorioLivrosEmprestados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RelatorioLivrosEmprestados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RelatorioLivrosEmprestados().setVisible(true);
+                new RelatorioLivrosEmprestadosUsuario().setVisible(true);
             }
         });
     }

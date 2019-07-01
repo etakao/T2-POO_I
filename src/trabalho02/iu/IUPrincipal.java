@@ -455,10 +455,10 @@ public class IUPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        RelatorioProfessor professor = new RelatorioProfessor();
-        professor.setTitle("Relatorio de professor");
+        RelatorioTodosProfessores professor = new RelatorioTodosProfessores();
+        professor.setTitle("Relatorio de todos os professores");
         professor.setVisible(true);
-        professor.setDefaultCloseOperation(RelatorioProfessor.DISPOSE_ON_CLOSE);
+        professor.setDefaultCloseOperation(RelatorioTodosProfessores.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -490,10 +490,10 @@ public class IUPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        RelatorioTodosAlunos usuarios = new RelatorioTodosAlunos();
-        usuarios.setTitle("Relatório de todos os alunos");
-        usuarios.setVisible(true);
-        usuarios.setDefaultCloseOperation(RelatorioTodosAlunos.DISPOSE_ON_CLOSE);
+        RelatoriosTodosAlunos alunos = new RelatoriosTodosAlunos();
+        alunos.setTitle("Relatório de todos os alunos");
+        alunos.setVisible(true);
+        alunos.setDefaultCloseOperation(RelatoriosTodosAlunos.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed

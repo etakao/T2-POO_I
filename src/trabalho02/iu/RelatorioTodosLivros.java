@@ -5,30 +5,34 @@
  */
 package trabalho02.iu;
 
-import trabalho02.dados.Database;
+import java.util.ArrayList;
+import trabalho02.modelo.Biblioteca;
 import trabalho02.modelo.Livro;
-import trabalho02.modelo.Emprestimo;
-
-
 /**
  *
- * @author Erick Yoshike
+ * @author Erick Yoshike and now Luskas
  */
 public class RelatorioTodosLivros extends javax.swing.JFrame {
-   Database db = Database.getInstance();
+ Biblioteca b = Biblioteca.getInstance();
 
-        Livro l[] = db.getLivros();
-        Emprestimo e[] = db.getEmprestimos();
+        ArrayList<Livro>livros = b.getLivros();
     /**
-     * Creates new form RelatorioTodosLivros
+     * Creates new form RelatorioTodosUsuarios
      */
     public RelatorioTodosLivros() {
         initComponents();
+        
+        
 
-     
-
-        for (int i = 0; i < db.getContL(); i++) {
-            cbNomeLivro.addItem(l[i].getNome());
+        for (Livro l: livros) {
+            
+                jTextArea1.append("Código do livro: " + l.getCodLivro()
+                    + "\nNome do livro: " + l.getNome()
+                    + "\nAno do livro: " + l.getAno()
+                    + "\n\n\n----------------------------------------------------"
+                    + "-------------------------------------------------"
+                    + "--------\n");
+            
         }
 
     }
@@ -42,25 +46,15 @@ public class RelatorioTodosLivros extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textAreaTodosLivros = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        cbNomeLivro = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        textAreaTodosLivros.setColumns(20);
-        textAreaTodosLivros.setRows(5);
-        jScrollPane1.setViewportView(textAreaTodosLivros);
-
-        jLabel1.setText("Nome");
-
-        cbNomeLivro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione o livro" }));
-        cbNomeLivro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbNomeLivroActionPerformed(evt);
-            }
-        });
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,56 +62,19 @@ public class RelatorioTodosLivros extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbNomeLivro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(cbNomeLivro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cbNomeLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNomeLivroActionPerformed
-    textAreaTodosLivros.append( "Nome \t Cod  \t Ano \t Emprestado\n\n\n" );
-      for(int i = 0; i< db.getContL(); i++){
-     
-        if (((String)cbNomeLivro.getSelectedItem()).equals(l[i].getNome())){
-               
-                if(l[i].estaEmprestado()== true){
-                     textAreaTodosLivros.append( l[i].getNome() + "\t" 
-                               + l[i].getCodLivro()+ "\t"
-                               + l[i].getAno() + "\t"
-                               + "Sim \n\n"
-                               + "--------------------------------------------------------------------------------------------------------------\n\n");
-                 
-                }
-                else{
-                     textAreaTodosLivros.append( l[i].getNome() + "\t" 
-                               + l[i].getCodLivro()+ "\t"
-                               + l[i].getAno() + "\t"
-                               + "Não \n\n"
-                               + "--------------------------------------------------------------------------------------------------------------\n\n");
-                 
-                }
-             } 
-               
-        }
-    }//GEN-LAST:event_cbNomeLivroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,6 +102,13 @@ public class RelatorioTodosLivros extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(RelatorioTodosLivros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -155,9 +119,7 @@ public class RelatorioTodosLivros extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbNomeLivro;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea textAreaTodosLivros;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

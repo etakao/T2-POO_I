@@ -5,28 +5,34 @@
  */
 package trabalho02.iu;
 
-import trabalho02.dados.Database;
+import java.util.ArrayList;
+import trabalho02.modelo.Biblioteca;
 import trabalho02.modelo.Livro;
-
 /**
  *
- * @author Erick Yoshike
+ * @author Erick Yoshike and now Luskas
  */
 public class RelatorioLivrosDisponiveis extends javax.swing.JFrame {
+ Biblioteca b = Biblioteca.getInstance();
 
+        ArrayList<Livro>livros = b.getLivros();
     /**
-     * Creates new form RelatorioLivrosDisponiveis
+     * Creates new form RelatorioTodosUsuarios
      */
     public RelatorioLivrosDisponiveis() {
         initComponents();
         
-        Database db = Database.getInstance();
+        
 
-        Livro l[] = db.getLivros();
-
-        for (int i = 0; i < db.getContL(); i++) {
-            if (l[i].estaEmprestado() == false){
-                cbLivrosDisponiveis.addItem(l[i].getNome());
+        for (Livro l: livros) {
+            
+            if (!l.estaEmprestado()) {
+                jTextArea1.append("Código do livro: " + l.getCodLivro()
+                    + "\nNome do livro: " + l.getNome()
+                    + "\nAno do livro: " + l.getAno()
+                    + "\n\n\n----------------------------------------------------"
+                    + "-------------------------------------------------"
+                    + "--------\n");
             }
         }
 
@@ -41,22 +47,15 @@ public class RelatorioLivrosDisponiveis extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cbLivrosDisponiveis = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtAreaLivrosDisponiveis = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cbLivrosDisponiveis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione o livro" }));
-        cbLivrosDisponiveis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbLivrosDisponiveisActionPerformed(evt);
-            }
-        });
-
-        txtAreaLivrosDisponiveis.setColumns(20);
-        txtAreaLivrosDisponiveis.setRows(5);
-        jScrollPane1.setViewportView(txtAreaLivrosDisponiveis);
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,40 +63,19 @@ public class RelatorioLivrosDisponiveis extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cbLivrosDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cbLivrosDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cbLivrosDisponiveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLivrosDisponiveisActionPerformed
-        Database db = Database.getInstance();
-
-        Livro l[] = db.getLivros();
-
-        for (int j = 0; j < db.getContL(); j++) {
-            if (((String) cbLivrosDisponiveis.getSelectedItem()).equals(l[j].getNome())) {
-                txtAreaLivrosDisponiveis.setText(
-                          "Nome: " + l[j].getNome() + "\n"
-                        + "ID: " + l[j].getCodLivro() + "\n"
-                        + "Ano: " + l[j].getAno() + "\n");
-            }
-        }
-    }//GEN-LAST:event_cbLivrosDisponiveisActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,6 +103,37 @@ public class RelatorioLivrosDisponiveis extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(RelatorioLivrosDisponiveis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -135,8 +144,7 @@ public class RelatorioLivrosDisponiveis extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbLivrosDisponiveis;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txtAreaLivrosDisponiveis;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,37 +6,82 @@
 package trabalho02.iu;
 
 import java.util.ArrayList;
+import trabalho02.modelo.Aluno;
 import trabalho02.modelo.Biblioteca;
-import trabalho02.modelo.Livro;
+import trabalho02.modelo.Usuario;
+import trabalho02.modelo.Emprestimo;
 /**
  *
  * @author Erick Yoshike and now Luskas
  */
-public class RelatorioLivrosEmprestados extends javax.swing.JFrame {
+public class RelatoriosTodosAlunos extends javax.swing.JFrame {
  Biblioteca b = Biblioteca.getInstance();
 
-        ArrayList<Livro>livros = b.getLivros();
+        ArrayList<Usuario>usuarios = b.getUsuarios();
+        ArrayList<Emprestimo>emprestimos = b.getEmprestimos();
     /**
      * Creates new form RelatorioTodosUsuarios
      */
-    public RelatorioLivrosEmprestados() {
+    public RelatoriosTodosAlunos() {
         initComponents();
         
         
 
-        for (Livro l: livros) {
-            
-            if (l.estaEmprestado()) {
-                jTextArea1.append("Código do livro: " + l.getCodLivro()
-                    + "\nNome do livro: " + l.getNome()
-                    + "\nAno do livro: " + l.getAno()
+        for (Usuario u: usuarios) {
+            if (u instanceof Aluno) {
+                for (Emprestimo e : emprestimos) {
+                if (u.getCodUsuario().equals(e.getCodUsuario())) {
+                    if (e.possuiPendencia()) {
+                        jTextArea1.append("Código do aluno: " + u.getCodUsuario()
+                                + "\nNome do aluno: " + u.getNome()
+                                + "\nCurso do aluno: " + ((Aluno) u).getCurso()
+                                + "\nAno do aluno: " + ((Aluno) u).getAno()
+                                + "\nPossui pendência: Sim"
+                                + "\nPossui empréstimo: Sim"
+                                + "\n\n\n----------------------------------------------------"
+                                + "-------------------------------------------------"
+                                + "--------\n");
+                    } else {
+                        jTextArea1.append("Código do aluno: " + u.getCodUsuario()
+                                + "\nNome do aluno: " + u.getNome()
+                                + "\nCurso do aluno: " + ((Aluno) u).getCurso()
+                                + "\nAno do aluno: " + ((Aluno) u).getAno()
+                                + "\nPossui pendência: Não"
+                                + "\nPossui empréstimo: Sim"
+                                + "\n\n\n----------------------------------------------------"
+                                + "-------------------------------------------------"
+                                + "--------\n");
+                    }
+                } else {
+                    jTextArea1.append("Código do aluno: " + u.getCodUsuario()
+                            + "\nNome do aluno: " + u.getNome()
+                            + "\nCurso do aluno: " + ((Aluno) u).getCurso()
+                            + "\nAno do aluno: " + ((Aluno) u).getAno()
+                            + "\nPossui pendência: Não"
+                            + "\nPossui empréstimo: Não"
+                            + "\n\n\n----------------------------------------------------"
+                            + "-------------------------------------------------"
+                            + "--------\n");
+                }
+            }
+            if (emprestimos == null) {
+                 jTextArea1.append("Código do aluno: " + u.getCodUsuario()
+                    + "\nNome do aluno: " + u.getNome()
+                    + "\nCurso do aluno: " + ((Aluno) u).getCurso()
+                    + "\nAno do aluno: " + ((Aluno) u).getAno()
+                    + "\nPossui pendência: Não"
+                    + "\nPossui empréstimo"
                     + "\n\n\n----------------------------------------------------"
                     + "-------------------------------------------------"
                     + "--------\n");
             }
+          
+
         }
 
     }
+        }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -94,35 +139,21 @@ public class RelatorioLivrosEmprestados extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RelatorioLivrosEmprestados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatoriosTodosAlunos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RelatorioLivrosEmprestados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatoriosTodosAlunos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RelatorioLivrosEmprestados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatoriosTodosAlunos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RelatorioLivrosEmprestados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatoriosTodosAlunos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RelatorioLivrosEmprestados().setVisible(true);
+                new RelatoriosTodosAlunos().setVisible(true);
             }
         });
     }

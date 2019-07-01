@@ -6,14 +6,16 @@
 package trabalho02.iu;
 
 import java.util.ArrayList;
+import trabalho02.modelo.Aluno;
 import trabalho02.modelo.Biblioteca;
+import trabalho02.modelo.Professor;
 import trabalho02.modelo.Usuario;
 import trabalho02.modelo.Emprestimo;
 /**
  *
  * @author Erick Yoshike and now Luskas
  */
-public class RelatorioTodosUsuarios extends javax.swing.JFrame {
+public class RelatorioTodosProfessores extends javax.swing.JFrame {
  Biblioteca b = Biblioteca.getInstance();
 
         ArrayList<Usuario>usuarios = b.getUsuarios();
@@ -21,55 +23,59 @@ public class RelatorioTodosUsuarios extends javax.swing.JFrame {
     /**
      * Creates new form RelatorioTodosUsuarios
      */
-    public RelatorioTodosUsuarios() {
+    public RelatorioTodosProfessores() {
         initComponents();
         
         
 
-        for (Usuario u : usuarios) {
-            for (Emprestimo e : emprestimos) {
-                if (u.getCodUsuario().equals(e.getCodUsuario())) {
-                    if (e.possuiPendencia()) {
-                        jTextArea1.append("Código do usuário: " + u.getCodUsuario()
-                                + "\nNome do usuário: " + u.getNome()
-                                + "\nPossui pendência: Sim"
-                                + "\nPossui empréstimo: Sim"
-                                + "\n\n\n----------------------------------------------------"
-                                + "-------------------------------------------------"
-                                + "--------\n");
+        for (Usuario u: usuarios) {
+            if (u instanceof Professor) {
+                for (Emprestimo e : emprestimos) {
+                    if (u.getCodUsuario().equals(e.getCodUsuario())) {
+                        if (e.possuiPendencia()) {
+                            jTextArea1.append("Código do professor: " + u.getCodUsuario()
+                                    + "\nNome do professor: " + u.getNome()
+                                    + "\nTitulação do professor: " + ((Professor) u).getTitulacao()
+                                    + "\nPossui pendência: Sim"
+                                    + "\nPossui empréstimo: Sim"
+                                    + "\n\n\n----------------------------------------------------"
+                                    + "-------------------------------------------------"
+                                    + "--------\n");
+                        } else {
+                            jTextArea1.append("Código do professor: " + u.getCodUsuario()
+                                    + "\nNome do professor: " + u.getNome()
+                                    + "\nTitulação do professor: " + ((Professor) u).getTitulacao()
+                                    + "\nPossui pendência: Não"
+                                    + "\nPossui empréstimo: Sim"
+                                    + "\n\n\n----------------------------------------------------"
+                                    + "-------------------------------------------------"
+                                    + "--------\n");
+                        }
                     } else {
-                        jTextArea1.append("Código do usuário: " + u.getCodUsuario()
-                                + "\nNome do usuário: " + u.getNome()
+                        jTextArea1.append("Código do professor: " + u.getCodUsuario()
+                                + "\nNome do professor: " + u.getNome()
+                                + "\nCurso do professor: " + ((Professor) u).getTitulacao()
                                 + "\nPossui pendência: Não"
-                                + "\nPossui empréstimo: Sim"
+                                + "\nPossui empréstimo: Não"
                                 + "\n\n\n----------------------------------------------------"
                                 + "-------------------------------------------------"
                                 + "--------\n");
                     }
-                } else {
-                    jTextArea1.append("Código do usuário: " + u.getCodUsuario()
-                            + "\nNome do usuário: " + u.getNome()
+                }
+                if (emprestimos == null) {
+                    jTextArea1.append("Código do professor: " + u.getCodUsuario()
+                            + "\nNome do professor: " + u.getNome()
+                            + "\nCurso do professor: " + ((Professor) u).getTitulacao()
                             + "\nPossui pendência: Não"
-                            + "\nPossui empréstimo: Não"
+                            + "\nPossui empréstimo"
                             + "\n\n\n----------------------------------------------------"
                             + "-------------------------------------------------"
                             + "--------\n");
                 }
-            }
-            if (emprestimos == null) {
-                 jTextArea1.append("Código do usuário: " + u.getCodUsuario()
-                    + "\nNome do usuário: " + u.getNome()
-                    + "\nPossui pendência: Não"
-                    + "\nPossui empréstimo"
-                    + "\n\n\n----------------------------------------------------"
-                    + "-------------------------------------------------"
-                    + "--------\n");
-            }
-          
 
+            }
+            }
         }
-
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -127,20 +133,23 @@ public class RelatorioTodosUsuarios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RelatorioTodosUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioTodosProfessores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RelatorioTodosUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioTodosProfessores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RelatorioTodosUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioTodosProfessores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RelatorioTodosUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioTodosProfessores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RelatorioTodosUsuarios().setVisible(true);
+                new RelatorioTodosProfessores().setVisible(true);
             }
         });
     }
