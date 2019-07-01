@@ -24,9 +24,9 @@ public class RelatorioLivrosAtrasados extends javax.swing.JFrame {
         Livro l[] = db.getLivros();
 
         for (int i = 0; i < db.getContL(); i++) {
-            if (atraso){
-                cbLivrosAtrasados.addItem(l[i].getNome());
-            }
+           // if (atraso){
+             //   cbLivrosAtrasados.addItem(l[i].getNome());
+         //   }
         }
         
     }

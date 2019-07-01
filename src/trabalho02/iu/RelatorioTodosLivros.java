@@ -7,22 +7,25 @@ package trabalho02.iu;
 
 import trabalho02.dados.Database;
 import trabalho02.modelo.Livro;
+import trabalho02.modelo.Emprestimo;
+
 
 /**
  *
  * @author Erick Yoshike
  */
 public class RelatorioTodosLivros extends javax.swing.JFrame {
+   Database db = Database.getInstance();
 
+        Livro l[] = db.getLivros();
+        Emprestimo e[] = db.getEmprestimos();
     /**
      * Creates new form RelatorioTodosLivros
      */
     public RelatorioTodosLivros() {
         initComponents();
 
-        Database db = Database.getInstance();
-
-        Livro l[] = db.getLivros();
+     
 
         for (int i = 0; i < db.getContL(); i++) {
             cbNomeLivro.addItem(l[i].getNome());
@@ -90,17 +93,29 @@ public class RelatorioTodosLivros extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbNomeLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNomeLivroActionPerformed
-        Database db = Database.getInstance();
-
-        Livro l[] = db.getLivros();
-
-        for (int j = 0; j < db.getContL(); j++) {
-            if (((String) cbNomeLivro.getSelectedItem()).equals(l[j].getNome())) {
-                textAreaTodosLivros.setText(
-                          "Nome: " + l[j].getNome() + "\n"
-                        + "ID: " + l[j].getCodLivro() + "\n"
-                        + "Ano: " + l[j].getAno() + "\n");
-            }
+    textAreaTodosLivros.append( "Nome \t Cod  \t Ano \t Emprestado\n\n\n" );
+      for(int i = 0; i< db.getContL(); i++){
+     
+        if (((String)cbNomeLivro.getSelectedItem()).equals(l[i].getNome())){
+               
+                if(l[i].estaEmprestado()== true){
+                     textAreaTodosLivros.append( l[i].getNome() + "\t" 
+                               + l[i].getCodLivro()+ "\t"
+                               + l[i].getAno() + "\t"
+                               + "Sim \n\n"
+                               + "--------------------------------------------------------------------------------------------------------------\n\n");
+                 
+                }
+                else{
+                     textAreaTodosLivros.append( l[i].getNome() + "\t" 
+                               + l[i].getCodLivro()+ "\t"
+                               + l[i].getAno() + "\t"
+                               + "Não \n\n"
+                               + "--------------------------------------------------------------------------------------------------------------\n\n");
+                 
+                }
+             } 
+               
         }
     }//GEN-LAST:event_cbNomeLivroActionPerformed
 

@@ -24,6 +24,7 @@ public class Database {
     private int contU; //contador de usuarios
     private int contE; //contador de emprestimos
     private int contL; //contador de livros
+    
 
     public Database() {
         this.usuarios = new Usuario[MAX_USUARIO];

@@ -12,10 +12,19 @@ package trabalho02.modelo;
 public class Aluno extends Usuario {
     protected String curso;
     protected int ano;
+
+    public String getCurso() {
+        return curso;
+    }
+
+    public int getAno() {
+        return ano;
+    }
     
     public Aluno(String codUsuario, String nome, String curso, int ano, int dias) {
         super(codUsuario, nome, dias); //emprestimo por X dias
         this.curso = curso;
         this.ano = ano;
     }
+    
 }
