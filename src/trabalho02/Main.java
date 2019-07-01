@@ -24,6 +24,7 @@ public class Main {
         IUPrincipal principal = new IUPrincipal();
         principal.setTitle("Sistema Biblioteca - Trabalho 02 - POO");
         principal.setVisible(true);
+        principal.setResizable(false);
 
 
         /////////////Utilizando datas --- adicionando dias e comparando datas

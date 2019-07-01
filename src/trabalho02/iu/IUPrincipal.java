@@ -377,6 +377,7 @@ public class IUPrincipal extends javax.swing.JFrame {
         livros.setTitle("Relatório de todos os livros");
         livros.setVisible(true);
         livros.setDefaultCloseOperation(RelatorioTodosLivros.DISPOSE_ON_CLOSE);
+        livros.setResizable(false);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -384,6 +385,7 @@ public class IUPrincipal extends javax.swing.JFrame {
         alunos.setTitle("Cadastro de alunos");
         alunos.setVisible(true);
         alunos.setDefaultCloseOperation(CadastroAlunos.DISPOSE_ON_CLOSE);
+        alunos.setResizable(false);
         //eu estou testando
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -392,6 +394,7 @@ public class IUPrincipal extends javax.swing.JFrame {
         professores.setTitle("Cadastro de professores");
         professores.setVisible(true);
         professores.setDefaultCloseOperation(CadastroProfessor.DISPOSE_ON_CLOSE);
+        professores.setResizable(false);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -399,6 +402,7 @@ public class IUPrincipal extends javax.swing.JFrame {
         livros.setTitle("Cadastro de livros");
         livros.setVisible(true);
         livros.setDefaultCloseOperation(CadastroLivros.DISPOSE_ON_CLOSE);
+        livros.setResizable(false);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
                                        
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -406,6 +410,7 @@ public class IUPrincipal extends javax.swing.JFrame {
         devolver.setTitle("Devolução");
         devolver.setVisible(true);
         devolver.setDefaultCloseOperation(IUEmprestimo.DISPOSE_ON_CLOSE);
+        devolver.setResizable(false);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
@@ -413,6 +418,7 @@ public class IUPrincipal extends javax.swing.JFrame {
         professor.setTitle("Relatorio de todos os professores");
         professor.setVisible(true);
         professor.setDefaultCloseOperation(RelatorioTodosProfessores.DISPOSE_ON_CLOSE);
+        professor.setResizable(false);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -420,6 +426,7 @@ public class IUPrincipal extends javax.swing.JFrame {
         usuarios.setTitle("Relatório de todos os usuarios");
         usuarios.setVisible(true);
         usuarios.setDefaultCloseOperation(RelatorioTodosUsuarios.DISPOSE_ON_CLOSE);
+        usuarios.setResizable(false);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
@@ -427,6 +434,7 @@ public class IUPrincipal extends javax.swing.JFrame {
         livros.setTitle("Relatório de livros disponíveis");
         livros.setVisible(true);
         livros.setDefaultCloseOperation(RelatorioLivrosDisponiveis.DISPOSE_ON_CLOSE);
+        livros.setResizable(false);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
@@ -434,6 +442,7 @@ public class IUPrincipal extends javax.swing.JFrame {
         livros.setTitle("Relatório de livros emprestados");
         livros.setVisible(true);
         livros.setDefaultCloseOperation(RelatorioLivrosEmprestados.DISPOSE_ON_CLOSE);
+        livros.setResizable(false);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
@@ -441,6 +450,7 @@ public class IUPrincipal extends javax.swing.JFrame {
         livros.setTitle("Relatório de livros atrasados");
         livros.setVisible(true);
         livros.setDefaultCloseOperation(RelatorioLivrosAtraso.DISPOSE_ON_CLOSE);
+        livros.setResizable(false);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
@@ -448,6 +458,7 @@ public class IUPrincipal extends javax.swing.JFrame {
         alunos.setTitle("Relatório de todos os alunos");
         alunos.setVisible(true);
         alunos.setDefaultCloseOperation(RelatoriosTodosAlunos.DISPOSE_ON_CLOSE);
+        alunos.setResizable(false);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
@@ -455,6 +466,7 @@ public class IUPrincipal extends javax.swing.JFrame {
         livros.setTitle("Relatório de todos os livros emprestados para um usuário");
         livros.setVisible(true);
         livros.setDefaultCloseOperation(RelatoriosTodosAlunos.DISPOSE_ON_CLOSE);
+        livros.setResizable(false);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -462,6 +474,7 @@ public class IUPrincipal extends javax.swing.JFrame {
         emprestimo.setTitle("Empréstimo");
         emprestimo.setVisible(true);
         emprestimo.setDefaultCloseOperation(IUEmprestimo.DISPOSE_ON_CLOSE);
+        emprestimo.setResizable(false);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
@@ -469,6 +482,7 @@ public class IUPrincipal extends javax.swing.JFrame {
         livros.setTitle("Relatório de todos os livros não devolvidos de um usuário");
         livros.setVisible(true);
         livros.setDefaultCloseOperation(RelatoriosTodosAlunos.DISPOSE_ON_CLOSE);
+        livros.setResizable(false);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
@@ -476,6 +490,7 @@ public class IUPrincipal extends javax.swing.JFrame {
         usuario.setTitle("Relatório de usuários com atraso");
         usuario.setVisible(true);
         usuario.setDefaultCloseOperation(RelatoriosTodosAlunos.DISPOSE_ON_CLOSE);
+        usuario.setResizable(false);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
 
