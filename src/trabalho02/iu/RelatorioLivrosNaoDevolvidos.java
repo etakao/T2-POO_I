@@ -6,6 +6,7 @@
 package trabalho02.iu;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import trabalho02.modelo.Biblioteca;
 import trabalho02.modelo.Livro;
 import trabalho02.modelo.Emprestimo;
@@ -14,7 +15,7 @@ import trabalho02.modelo.Item;
  *
  * @author Erick Yoshike and now Luskas
  */
-public class RelatorioLivrosEmprestadosUsuario extends javax.swing.JFrame {
+public class RelatorioLivrosNaoDevolvidos extends javax.swing.JFrame {
     Biblioteca b = Biblioteca.getInstance();
     Emprestimo e = Emprestimo.getInstance();
 
@@ -24,7 +25,7 @@ public class RelatorioLivrosEmprestadosUsuario extends javax.swing.JFrame {
     /**
      * Creates new form RelatorioTodosUsuarios
      */
-    public RelatorioLivrosEmprestadosUsuario() {
+    public RelatorioLivrosNaoDevolvidos() {
         initComponents();
         
     }
@@ -151,6 +152,9 @@ public class RelatorioLivrosEmprestadosUsuario extends javax.swing.JFrame {
                     codlivro[j] = i.getCodLivro();
                     j++;
                 }
+                if (e1.possuiPendencia()) {
+                    JOptionPane.showMessageDialog(null, "O usuário tem livros atrasados", "Aviso", JOptionPane.WARNING_MESSAGE);
+                }
             }
         }
         if (codlivro.length != 0) {
@@ -177,7 +181,7 @@ public class RelatorioLivrosEmprestadosUsuario extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RelatorioLivrosEmprestadosUsuario().setVisible(true);
+                new RelatorioLivrosNaoDevolvidos().setVisible(true);
             }
         });
     }

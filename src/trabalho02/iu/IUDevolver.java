@@ -127,14 +127,15 @@ public class IUDevolver extends javax.swing.JFrame {
                 }
             }
             ArrayList<Emprestimo>emprestimos = b.getEmprestimos();
-            for(Emprestimo e1 : emprestimos) {
-                ArrayList<Item> itens = e1.getItens();
-                for (int i=0; i<itens.size(); i++) {
-                    if (itens.get(i).getCodLivro().equals(codLivro)) {
+            for(int i=0; i<emprestimos.size(); i++) {
+                ArrayList<Item> itens = emprestimos.get(i).getItens();
+                for (int j=0; j<itens.size(); j++) {
+                    if (itens.get(j).getCodLivro().equals(codLivro)) {
                         modelo.removeRow(index);
-                        itens.remove(i);
+                        itens.remove(j);
                     }
                 }
+                emprestimos.remove(i);
 
             }
             

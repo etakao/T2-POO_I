@@ -7,68 +7,45 @@ package trabalho02.iu;
 
 import java.util.ArrayList;
 import trabalho02.modelo.Biblioteca;
-import trabalho02.modelo.Usuario;
+import trabalho02.modelo.Livro;
 import trabalho02.modelo.Emprestimo;
+import trabalho02.modelo.Item;
 /**
  *
  * @author Erick Yoshike and now Luskas
  */
-public class RelatorioTodosUsuarios extends javax.swing.JFrame {
+public class RelatorioLivrosAtraso extends javax.swing.JFrame {
  Biblioteca b = Biblioteca.getInstance();
 
-        ArrayList<Usuario>usuarios = b.getUsuarios();
+        ArrayList<Livro>livros = b.getLivros();
         ArrayList<Emprestimo>emprestimos = b.getEmprestimos();
+        ArrayList<Item>itens;
     /**
      * Creates new form RelatorioTodosUsuarios
      */
-    public RelatorioTodosUsuarios() {
+    public RelatorioLivrosAtraso() {
         initComponents();
         
         
 
-        for (Usuario u : usuarios) {
+        for (Livro l : livros) {
             for (Emprestimo e : emprestimos) {
-                if (u.getCodUsuario().equals(e.getCodUsuario())) {
-                    if (e.possuiPendencia()) {
-                        jTextArea1.append("Código do usuário: " + u.getCodUsuario()
-                                + "\nNome do usuário: " + u.getNome()
-                                + "\nPossui pendência: Sim"
-                                + "\nPossui empréstimo: Sim"
-                                + "\n\n\n----------------------------------------------------"
-                                + "-------------------------------------------------"
-                                + "--------\n");
-                    } else {
-                        jTextArea1.append("Código do usuário: " + u.getCodUsuario()
-                                + "\nNome do usuário: " + u.getNome()
-                                + "\nPossui pendência: Não"
-                                + "\nPossui empréstimo: Sim"
-                                + "\n\n\n----------------------------------------------------"
-                                + "-------------------------------------------------"
-                                + "--------\n");
+                itens = e.getItens();
+                for (Item i : itens) {
+                    if (i.getCodLivro().equals(l.getCodLivro())) {
+                        if (e.possuiPendencia()) {
+                            jTextArea1.append("Código do livro: " + l.getCodLivro()
+                                    + "\nNome do livro: " + l.getNome()
+                                    + "\nAno do livro: " + l.getAno()
+                                    + "\n\n\n----------------------------------------------------"
+                                    + "-------------------------------------------------"
+                                    + "--------\n");
+
+                        }
                     }
-                } else {
-                    jTextArea1.append("Código do usuário: " + u.getCodUsuario()
-                            + "\nNome do usuário: " + u.getNome()
-                            + "\nPossui pendência: Não"
-                            + "\nPossui empréstimo: Não"
-                            + "\n\n\n----------------------------------------------------"
-                            + "-------------------------------------------------"
-                            + "--------\n");
                 }
             }
-            if (emprestimos.isEmpty()) {
-                 jTextArea1.append("Código do usuário: " + u.getCodUsuario()
-                    + "\nNome do usuário: " + u.getNome()
-                    + "\nPossui pendência: Não"
-                    + "\nPossui empréstimo: Não"
-                    + "\n\n\n----------------------------------------------------"
-                    + "-------------------------------------------------"
-                    + "--------\n");
-            }
-          
-
         }
-
     }
 
     /**
@@ -127,20 +104,35 @@ public class RelatorioTodosUsuarios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RelatorioTodosUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioLivrosAtraso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RelatorioTodosUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioLivrosAtraso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RelatorioTodosUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioLivrosAtraso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RelatorioTodosUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioLivrosAtraso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RelatorioTodosUsuarios().setVisible(true);
+                new RelatorioLivrosAtraso().setVisible(true);
             }
         });
     }

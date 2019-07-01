@@ -13,7 +13,7 @@ import trabalho02.modelo.Emprestimo;
  *
  * @author Erick Yoshike and now Luskas
  */
-public class RelatorioTodosUsuarios extends javax.swing.JFrame {
+public class RelatorioUsuariosAtraso extends javax.swing.JFrame {
  Biblioteca b = Biblioteca.getInstance();
 
         ArrayList<Usuario>usuarios = b.getUsuarios();
@@ -21,7 +21,7 @@ public class RelatorioTodosUsuarios extends javax.swing.JFrame {
     /**
      * Creates new form RelatorioTodosUsuarios
      */
-    public RelatorioTodosUsuarios() {
+    public RelatorioUsuariosAtraso() {
         initComponents();
         
         
@@ -32,45 +32,15 @@ public class RelatorioTodosUsuarios extends javax.swing.JFrame {
                     if (e.possuiPendencia()) {
                         jTextArea1.append("Código do usuário: " + u.getCodUsuario()
                                 + "\nNome do usuário: " + u.getNome()
-                                + "\nPossui pendência: Sim"
-                                + "\nPossui empréstimo: Sim"
-                                + "\n\n\n----------------------------------------------------"
-                                + "-------------------------------------------------"
-                                + "--------\n");
-                    } else {
-                        jTextArea1.append("Código do usuário: " + u.getCodUsuario()
-                                + "\nNome do usuário: " + u.getNome()
-                                + "\nPossui pendência: Não"
-                                + "\nPossui empréstimo: Sim"
                                 + "\n\n\n----------------------------------------------------"
                                 + "-------------------------------------------------"
                                 + "--------\n");
                     }
-                } else {
-                    jTextArea1.append("Código do usuário: " + u.getCodUsuario()
-                            + "\nNome do usuário: " + u.getNome()
-                            + "\nPossui pendência: Não"
-                            + "\nPossui empréstimo: Não"
-                            + "\n\n\n----------------------------------------------------"
-                            + "-------------------------------------------------"
-                            + "--------\n");
                 }
             }
-            if (emprestimos.isEmpty()) {
-                 jTextArea1.append("Código do usuário: " + u.getCodUsuario()
-                    + "\nNome do usuário: " + u.getNome()
-                    + "\nPossui pendência: Não"
-                    + "\nPossui empréstimo: Não"
-                    + "\n\n\n----------------------------------------------------"
-                    + "-------------------------------------------------"
-                    + "--------\n");
-            }
-          
-
         }
-
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -127,20 +97,21 @@ public class RelatorioTodosUsuarios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RelatorioTodosUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioUsuariosAtraso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RelatorioTodosUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioUsuariosAtraso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RelatorioTodosUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioUsuariosAtraso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RelatorioTodosUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioUsuariosAtraso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RelatorioTodosUsuarios().setVisible(true);
+                new RelatorioUsuariosAtraso().setVisible(true);
             }
         });
     }

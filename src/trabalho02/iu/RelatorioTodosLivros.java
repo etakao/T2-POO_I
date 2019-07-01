@@ -8,6 +8,8 @@ package trabalho02.iu;
 import java.util.ArrayList;
 import trabalho02.modelo.Biblioteca;
 import trabalho02.modelo.Livro;
+import trabalho02.modelo.Emprestimo;
+import trabalho02.modelo.Item;
 /**
  *
  * @author Erick Yoshike and now Luskas
@@ -16,6 +18,8 @@ public class RelatorioTodosLivros extends javax.swing.JFrame {
  Biblioteca b = Biblioteca.getInstance();
 
         ArrayList<Livro>livros = b.getLivros();
+        ArrayList<Emprestimo>emprestimos = b.getEmprestimos();
+        ArrayList<Item>itens;
     /**
      * Creates new form RelatorioTodosUsuarios
      */
@@ -25,14 +29,53 @@ public class RelatorioTodosLivros extends javax.swing.JFrame {
         
 
         for (Livro l: livros) {
-            
+            for (Emprestimo e : emprestimos) {
+                itens = e.getItens();
+                for (Item i : itens) {
+                    if(i.getCodLivro().equals(l.getCodLivro())) {
+                        if (e.possuiPendencia()) {
+                            jTextArea1.append("Código do livro: " + l.getCodLivro()
+                                    + "\nNome do livro: " + l.getNome()
+                                    + "\nAno do livro: " + l.getAno()
+                                    + "\nLivro emprestado: Sim"
+                                    + "\nLivro com atraso: Sim"
+                                    + "\n\n\n----------------------------------------------------"
+                                    + "-------------------------------------------------"
+                                    + "--------\n");
+                        }
+                        else {
+                            jTextArea1.append("Código do livro: " + l.getCodLivro()
+                                    + "\nNome do livro: " + l.getNome()
+                                    + "\nAno do livro: " + l.getAno()
+                                    + "\nLivro emprestado: Sim"
+                                    + "\nLivro com atraso: Não"
+                                    + "\n\n\n----------------------------------------------------"
+                                    + "-------------------------------------------------"
+                                    + "--------\n");
+                        }
+                    }
+                    else {
+                        jTextArea1.append("Código do livro: " + l.getCodLivro()
+                                + "\nNome do livro: " + l.getNome()
+                                + "\nAno do livro: " + l.getAno()
+                                + "\nLivro emprestado: Não"
+                                + "\nLivro com atraso: Não"
+                                + "\n\n\n----------------------------------------------------"
+                                + "-------------------------------------------------"
+                                + "--------\n");
+                    }
+                }
+            }
+            if (emprestimos.isEmpty()) {
                 jTextArea1.append("Código do livro: " + l.getCodLivro()
-                    + "\nNome do livro: " + l.getNome()
-                    + "\nAno do livro: " + l.getAno()
-                    + "\n\n\n----------------------------------------------------"
-                    + "-------------------------------------------------"
-                    + "--------\n");
-            
+                        + "\nNome do livro: " + l.getNome()
+                        + "\nAno do livro: " + l.getAno()
+                        + "\nLivro emprestado: Não"
+                        + "\nLivro com atraso: Não"
+                        + "\n\n\n----------------------------------------------------"
+                        + "-------------------------------------------------"
+                        + "--------\n");
+            }  
         }
 
     }

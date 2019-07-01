@@ -12,34 +12,34 @@ import java.io.Serializable;
  * @author Danilo Medeiros Eler
  */
 public class Config implements Serializable{
-    private String arquivoLivros = ".\\livros.dat";
-    private String arquivoUsuarios = ".\\usuarios.dat";
-    private String arquivoEmprestimos = ".\\emprestimos.dat";
+    private static String arquivoLivros = ".\\livros.dat";
+    private static String arquivoUsuarios = ".\\usuarios.txt";
+    private static String arquivoEmprestimos = ".\\emprestimos.dat";
     private int diasAluno = 10;
     private int diasProfessor = 20;
 
-    public String getArquivoEmprestimos() {
+    public static String getArquivoEmprestimos() {
         return arquivoEmprestimos;
     }
 
     public void setArquivoEmprestimos(String arquivoEmprestimos) {
-        this.arquivoEmprestimos = arquivoEmprestimos;
+        Config.arquivoEmprestimos = arquivoEmprestimos;
     }
 
-    public String getArquivoLivros() {
+    public static String getArquivoLivros() {
         return arquivoLivros;
     }
 
     public void setArquivoLivros(String arquivoLivros) {
-        this.arquivoLivros = arquivoLivros;
+        Config.arquivoLivros = arquivoLivros;
     }
 
-    public String getArquivoUsuarios() {
+    public static String getArquivoUsuarios() {
         return arquivoUsuarios;
     }
 
     public void setArquivoUsuarios(String arquivoUsuarios) {
-        this.arquivoUsuarios = arquivoUsuarios;
+        Config.arquivoUsuarios = arquivoUsuarios;
     }
 
     public int getDiasAluno() {

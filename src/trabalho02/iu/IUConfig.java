@@ -43,9 +43,9 @@ public class IUConfig extends javax.swing.JDialog {
 
         this.diasAluno_Text.setText(Integer.toString( configuracoes.getDiasAluno() ));
         this.diasProfessor_Text.setText(Integer.toString( configuracoes.getDiasProfessor() ));
-        this.livros_Text.setText(configuracoes.getArquivoLivros());
-        this.usuarios_Text.setText(configuracoes.getArquivoUsuarios());
-        this.emprestimos_Text.setText(configuracoes.getArquivoEmprestimos());
+        this.livros_Text.setText(Config.getArquivoLivros());
+        this.usuarios_Text.setText(Config.getArquivoUsuarios());
+        this.emprestimos_Text.setText(Config.getArquivoEmprestimos());
 
         this.pack();
         this.setLocationRelativeTo(this.getParent());

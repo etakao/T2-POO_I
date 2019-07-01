@@ -51,6 +51,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Empr&#xe9;stimo"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem4ActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
               <Properties>
@@ -103,6 +106,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Livros n&#xe3;o Devolvidos por um Usu&#xe1;rio"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem18ActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
             </MenuItem>
@@ -144,6 +150,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Usu&#xe1;rios com Atraso"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem13ActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

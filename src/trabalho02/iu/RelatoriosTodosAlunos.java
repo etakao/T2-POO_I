@@ -27,32 +27,45 @@ public class RelatoriosTodosAlunos extends javax.swing.JFrame {
         
         
 
-        for (Usuario u: usuarios) {
+        for (Usuario u : usuarios) {
             if (u instanceof Aluno) {
                 for (Emprestimo e : emprestimos) {
-                if (u.getCodUsuario().equals(e.getCodUsuario())) {
-                    if (e.possuiPendencia()) {
-                        jTextArea1.append("Código do aluno: " + u.getCodUsuario()
-                                + "\nNome do aluno: " + u.getNome()
-                                + "\nCurso do aluno: " + ((Aluno) u).getCurso()
-                                + "\nAno do aluno: " + ((Aluno) u).getAno()
-                                + "\nPossui pendência: Sim"
-                                + "\nPossui empréstimo: Sim"
-                                + "\n\n\n----------------------------------------------------"
-                                + "-------------------------------------------------"
-                                + "--------\n");
+                    if (u.getCodUsuario().equals(e.getCodUsuario())) {
+                        if (e.possuiPendencia()) {
+                            jTextArea1.append("Código do aluno: " + u.getCodUsuario()
+                                    + "\nNome do aluno: " + u.getNome()
+                                    + "\nCurso do aluno: " + ((Aluno) u).getCurso()
+                                    + "\nAno do aluno: " + ((Aluno) u).getAno()
+                                    + "\nPossui pendência: Sim"
+                                    + "\nPossui empréstimo: Sim"
+                                    + "\n\n\n----------------------------------------------------"
+                                    + "-------------------------------------------------"
+                                    + "--------\n");
+                        } else {
+                            jTextArea1.append("Código do aluno: " + u.getCodUsuario()
+                                    + "\nNome do aluno: " + u.getNome()
+                                    + "\nCurso do aluno: " + ((Aluno) u).getCurso()
+                                    + "\nAno do aluno: " + ((Aluno) u).getAno()
+                                    + "\nPossui pendência: Não"
+                                    + "\nPossui empréstimo: Sim"
+                                    + "\n\n\n----------------------------------------------------"
+                                    + "-------------------------------------------------"
+                                    + "--------\n");
+                        }
                     } else {
                         jTextArea1.append("Código do aluno: " + u.getCodUsuario()
                                 + "\nNome do aluno: " + u.getNome()
                                 + "\nCurso do aluno: " + ((Aluno) u).getCurso()
                                 + "\nAno do aluno: " + ((Aluno) u).getAno()
                                 + "\nPossui pendência: Não"
-                                + "\nPossui empréstimo: Sim"
+                                + "\nPossui empréstimo: Não"
                                 + "\n\n\n----------------------------------------------------"
                                 + "-------------------------------------------------"
                                 + "--------\n");
                     }
-                } else {
+                }
+                System.out.println(emprestimos);
+                if (emprestimos.isEmpty()) {
                     jTextArea1.append("Código do aluno: " + u.getCodUsuario()
                             + "\nNome do aluno: " + u.getNome()
                             + "\nCurso do aluno: " + ((Aluno) u).getCurso()
@@ -63,24 +76,11 @@ public class RelatoriosTodosAlunos extends javax.swing.JFrame {
                             + "-------------------------------------------------"
                             + "--------\n");
                 }
+
             }
-            if (emprestimos == null) {
-                 jTextArea1.append("Código do aluno: " + u.getCodUsuario()
-                    + "\nNome do aluno: " + u.getNome()
-                    + "\nCurso do aluno: " + ((Aluno) u).getCurso()
-                    + "\nAno do aluno: " + ((Aluno) u).getAno()
-                    + "\nPossui pendência: Não"
-                    + "\nPossui empréstimo"
-                    + "\n\n\n----------------------------------------------------"
-                    + "-------------------------------------------------"
-                    + "--------\n");
-            }
-          
 
         }
-
     }
-        }
 
 
     /**

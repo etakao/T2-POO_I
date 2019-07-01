@@ -16,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -26,11 +27,17 @@ import trabalho02.dados.Database;
 import trabalho02.modelo.Professor;
 import trabalho02.modelo.Emprestimo;
 import trabalho02.modelo.Livro;
+import trabalho02.modelo.Config;
 /**
  *
  * @author Danilo Medeiros Eler
  */
 public class IUPrincipal extends javax.swing.JFrame {
+    Biblioteca b = Biblioteca.getInstance();
+    ArrayList<Usuario>usuarios = b.getUsuarios();
+    ArrayList<Livro> livros = b.getLivros();
+    ArrayList<Emprestimo> emprestimos = b.getEmprestimos();
+    boolean carregado = false;
 
     /** Creates new form IUPrincipal */
     public IUPrincipal() {
@@ -111,6 +118,11 @@ public class IUPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Movimentação");
 
         jMenuItem4.setText("Empréstimo");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuItem5.setText("Devolução");
@@ -158,6 +170,11 @@ public class IUPrincipal extends javax.swing.JFrame {
         jMenu4.add(jMenuItem17);
 
         jMenuItem18.setText("Livros não Devolvidos por um Usuário");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem18);
         jMenu4.add(jSeparator1);
 
@@ -195,6 +212,11 @@ public class IUPrincipal extends javax.swing.JFrame {
         jMenu4.add(jMenuItem12);
 
         jMenuItem13.setText("Usuários com Atraso");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem13);
 
         jMenuBar1.add(jMenu4);
@@ -257,158 +279,97 @@ public class IUPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-        Database db = Database.getInstance();
-    Usuario u[] = db.getUsuarios();
-     trabalho02.modelo.Emprestimo e[]= db.getEmprestimos();
-     Livro l[]=db.getLivros();
-        FileOutputStream fos = null;
-                    ObjectOutputStream oos = null;
-
-                     {
-                        try {
-                            fos = new FileOutputStream("usuarios.dat");
-                            oos = new ObjectOutputStream(fos);
-                            oos.writeInt(db.getContU());
-                            for (int i = 0; i < db.getContU(); i++) {
-                                oos.writeObject(u[i]);
-                            }
-                        } catch (FileNotFoundException ex) {
-                            Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (IOException ex) {
-                            Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                        } finally {
-                            try {
-                                fos.close();
-                                oos.close();
-                                JOptionPane.showMessageDialog(this, " Usuarios Salvos com sucesso");
-                            } catch (IOException ex) {
-                                Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                        
-                        
-                        
-                        try {
-                            fos = new FileOutputStream("livros.dat");
-                            oos = new ObjectOutputStream(fos);
-                            oos.writeInt(db.getContL());
-                            for (int j = 0; j < db.getContL(); j++) {
-                                oos.writeObject(l[j]);
-                            }
-                        } catch (FileNotFoundException ex) {
-                            Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (IOException ex) {
-                            Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                        } finally {
-                            try {
-                                fos.close();
-                                oos.close();
-                                JOptionPane.showMessageDialog(this, " Livros Salvos com sucesso");
-                            } catch (IOException ex) {
-                                Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                        
-                          try {
-                            fos = new FileOutputStream("emprestimos.dat");
-                            oos = new ObjectOutputStream(fos);
-                            oos.writeInt(db.getContE());
-                            for (int k = 0; k < db.getContE(); k++) {
-                                oos.writeObject(e[k]);
-                            }
-                        } catch (FileNotFoundException ex) {
-                            Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (IOException ex) {
-                            Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                        } finally {
-                            try {
-                                fos.close();
-                                oos.close();
-                                JOptionPane.showMessageDialog(this, " Emprestimos Salvos com sucesso");
-                            } catch (IOException ex) {
-                                Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                     }
+        try {
+            if(!usuarios.isEmpty()) {
+                FileOutputStream usuario = new FileOutputStream(Config.getArquivoUsuarios());
+                ObjectOutputStream ousuario = new ObjectOutputStream(usuario);
+                for(Usuario u : usuarios){
+                    ousuario.writeObject(u);
+                }
+                ousuario.flush();
+                ousuario.close();
+                usuario.flush();
+                usuario.close();
+            }
+        }
+        catch(IOException e) {
+        }
+        try {
+            if(!livros.isEmpty()) {
+                FileOutputStream livro = new FileOutputStream(Config.getArquivoLivros());
+                ObjectOutputStream olivro = new ObjectOutputStream(livro);
+                for(Livro l : livros){
+                    olivro.writeObject(l);
+                }
+                olivro.flush();
+                olivro.close();
+                livro.flush();
+                livro.close();
+            }
+        }
+        catch(IOException e) {
+        }
+        try {
+            if(!emprestimos.isEmpty()) {
+                FileOutputStream emprestimo = new FileOutputStream(Config.getArquivoEmprestimos());
+                ObjectOutputStream oemprestimo = new ObjectOutputStream(emprestimo);
+                for(Emprestimo e : emprestimos){
+                    oemprestimo.writeObject(e);
+                }
+                oemprestimo.flush();
+                oemprestimo.close();
+                emprestimo.flush();
+                emprestimo.close();
+            }
+           
+        }
+        
+        catch(IOException e) {
+            
+        }
+        JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!!");
+        carregado = true;
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-             Database db = Database.getInstance();
-        Usuario u[] = db.getUsuarios();
-     trabalho02.modelo.Emprestimo e[]= db.getEmprestimos();
-     Livro l[]=db.getLivros();
-        FileInputStream fis = null;
-                    ObjectInputStream ois = null;
 
-                     {
-                        try {
-                            fis = new FileInputStream("usuarios.dat");
-                            ois = new ObjectInputStream(fis);
-                            int cont = ois.readInt();
-                            for (int i = 0; i < cont; i++) {
-                                u[i] = (Usuario) ois.readObject();
-                            }
-                        } catch (FileNotFoundException ex) {
-                            Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (IOException ex) {
-                            Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (ClassNotFoundException ex) {
-                            Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                        } finally {
-                            try {
-                                fis.close();
-                                ois.close();
-                                 JOptionPane.showMessageDialog(this, " Usuarios Carregados com sucesso");
-                            } catch (IOException ex) {
-                                Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                        try {
-                            fis = new FileInputStream("livros.dat");
-                            ois = new ObjectInputStream(fis);
-                            int cont1 = ois.readInt();
-                            for (int j = 0; j < cont1; j++) {
-                                l[j] = (Livro) ois.readObject();
-                            }
-                        } catch (FileNotFoundException ex) {
-                            Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (IOException ex) {
-                            Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (ClassNotFoundException ex) {
-                            Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                        } finally {
-                            try {
-                                fis.close();
-                                ois.close();
-                                JOptionPane.showMessageDialog(this, " Livros Carregados com sucesso");
-                            } catch (IOException ex) {
-                                Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                         try {
-                            fis = new FileInputStream("emprestimos.dat");
-                            ois = new ObjectInputStream(fis);
-                            int cont2 = ois.readInt();
-                            for (int k = 0; k < cont2; k++) {
-                                e[k] = (Emprestimo) ois.readObject();
-                            }
-                        } catch (FileNotFoundException ex) {
-                            Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (IOException ex) {
-                            Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (ClassNotFoundException ex) {
-                            Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                        } finally {
-                            try {
-                                fis.close();
-                                ois.close();
-                                JOptionPane.showMessageDialog(this, " Emprestimos Carregados com sucesso");
-                            } catch (IOException ex) {
-                                Logger.getLogger(IUPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                    }
-       
+        if (carregado) {
+            JOptionPane.showMessageDialog(null, "Você já carregou os dados!!");
+        } else {
+            try {
+                FileInputStream usuario = new FileInputStream(Config.getArquivoUsuarios());
+                ObjectInputStream ousuario = new ObjectInputStream(usuario);
+                Usuario u = (Usuario)ousuario.readObject();
+                usuarios.add(u);
+                ousuario.close();
+                usuario.close();
+            }
+            catch (ClassNotFoundException | IOException e) {
+            }
+            try {
+                FileInputStream livro = new FileInputStream(Config.getArquivoLivros());
+                ObjectInputStream olivro = new ObjectInputStream(livro);
+                Livro l = (Livro) olivro.readObject();
+                livros.add(l);
+                olivro.close();
+                livro.close();
+            }
+            catch (ClassNotFoundException | IOException e) {
+            }
+            try {
+                FileInputStream emprestimo = new FileInputStream(Config.getArquivoEmprestimos());
+                ObjectInputStream oemprestimo = new ObjectInputStream(emprestimo);
+                Emprestimo e = (Emprestimo) oemprestimo.readObject();
+                emprestimos.add(e);
+                oemprestimo.close();
+                emprestimo.close();
+                
+            } catch (ClassNotFoundException | IOException e) {
+
+            }
+            carregado = true;
+            JOptionPane.showMessageDialog(null, "Dados carregados com sucesso!!");
+        }
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
@@ -439,14 +400,7 @@ public class IUPrincipal extends javax.swing.JFrame {
         livros.setVisible(true);
         livros.setDefaultCloseOperation(CadastroLivros.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        IUEmprestimo emprestimo = new IUEmprestimo();
-        emprestimo.setTitle("Empréstimo");
-        emprestimo.setVisible(true);
-        emprestimo.setDefaultCloseOperation(IUEmprestimo.DISPOSE_ON_CLOSE);
-    }                                          
-
+                                       
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         IUDevolver devolver = new IUDevolver();
         devolver.setTitle("Devolução");
@@ -483,10 +437,10 @@ public class IUPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        RelatorioLivrosAtrasados livros = new RelatorioLivrosAtrasados();
+        RelatorioLivrosAtraso livros = new RelatorioLivrosAtraso();
         livros.setTitle("Relatório de livros atrasados");
         livros.setVisible(true);
-        livros.setDefaultCloseOperation(RelatorioLivrosAtrasados.DISPOSE_ON_CLOSE);
+        livros.setDefaultCloseOperation(RelatorioLivrosAtraso.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
@@ -497,8 +451,32 @@ public class IUPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
-        // TODO add your handling code here:
+        RelatorioLivrosEmprestadosUsuario livros = new RelatorioLivrosEmprestadosUsuario();
+        livros.setTitle("Relatório de todos os livros emprestados para um usuário");
+        livros.setVisible(true);
+        livros.setDefaultCloseOperation(RelatoriosTodosAlunos.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        IUEmprestimo emprestimo = new IUEmprestimo();
+        emprestimo.setTitle("Empréstimo");
+        emprestimo.setVisible(true);
+        emprestimo.setDefaultCloseOperation(IUEmprestimo.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        RelatorioLivrosNaoDevolvidos livros = new RelatorioLivrosNaoDevolvidos();
+        livros.setTitle("Relatório de todos os livros não devolvidos de um usuário");
+        livros.setVisible(true);
+        livros.setDefaultCloseOperation(RelatoriosTodosAlunos.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        RelatorioUsuariosAtraso usuario = new RelatorioUsuariosAtraso();
+        usuario.setTitle("Relatório de usuários com atraso");
+        usuario.setVisible(true);
+        usuario.setDefaultCloseOperation(RelatoriosTodosAlunos.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
 
 
     /**

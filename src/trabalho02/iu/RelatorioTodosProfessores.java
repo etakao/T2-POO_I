@@ -62,12 +62,12 @@ public class RelatorioTodosProfessores extends javax.swing.JFrame {
                                 + "--------\n");
                     }
                 }
-                if (emprestimos == null) {
+                if (emprestimos.isEmpty()) {
                     jTextArea1.append("Código do professor: " + u.getCodUsuario()
                             + "\nNome do professor: " + u.getNome()
                             + "\nCurso do professor: " + ((Professor) u).getTitulacao()
                             + "\nPossui pendência: Não"
-                            + "\nPossui empréstimo"
+                            + "\nPossui empréstimo: Não"
                             + "\n\n\n----------------------------------------------------"
                             + "-------------------------------------------------"
                             + "--------\n");
