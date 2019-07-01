@@ -8,22 +8,23 @@ package trabalho02.iu;
 import trabalho02.dados.Database;
 import trabalho02.modelo.Aluno;
 import trabalho02.modelo.Usuario;
-
+import trabalho02.modelo.Emprestimo;
 /**
  *
  * @author Erick Yoshike
  */
 public class RelatorioTodosAlunos extends javax.swing.JFrame {
-
+ Database db = Database.getInstance();
+        
+        Usuario u[] = db.getUsuarios();
+         Emprestimo e[]= db.getEmprestimos();
     /**
      * Creates new form RelatorioTodosAlunos
      */
     public RelatorioTodosAlunos() {
         initComponents();
+      
         
-        Database db = Database.getInstance();
-
-        Usuario u[] = db.getUsuarios();
 
         for (int i = 0; i < db.getContU(); i++) {
             if (u[i] instanceof Aluno){
@@ -85,17 +86,53 @@ public class RelatorioTodosAlunos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbTodosAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTodosAlunosActionPerformed
-        Database db = Database.getInstance();
-        
-        Usuario u[] = db.getUsuarios();
+       
 
-        for (int j = 0; j < db.getContU(); j++) {
-            if (((String) cbTodosAlunos.getSelectedItem()).equals(u[j].getNome())) {
-                txtAreaTodosAlunos.setText(
-                          "Nome: " + u[j].getNome() + "\n"
-                        + "ID: " + u[j].getCodUsuario() + "\n");
-            }
-        }
+       txtAreaTodosAlunos.append( "Nome \t ID \t Curso \t Ano \t Emprestimo \t Atraso\n\n\n" );
+      
+        for(int i = 0; i< db.getContU(); i++){
+     
+        if (((String)cbTodosAlunos.getSelectedItem()).equals(u[i].getNome())){
+            int j = db.getContE();
+           if(j !=0){
+               for( j =0; j<db.getContE();j++){
+                if(u[i].getCodUsuario() == e[j].getCodUsuario()){
+                     txtAreaTodosAlunos.append( u[i].getNome() + "\t" 
+                               + u[i].getCodUsuario() + "\t"
+                               + ((Aluno)u[i]).getCurso()+ "\t"
+                               +((Aluno)u[i]).getAno() + "\t"
+                               + "Sim \t"
+                               + "Sim \n"
+                               + "--------------------------------------------------------------------------------------------------------------\n\n");
+                 }
+            
+              
+                else { 
+                    
+                    
+                               txtAreaTodosAlunos.append( u[i].getNome() + "\t" 
+                               + u[i].getCodUsuario() + "\t"
+                               + ((Aluno)u[i]).getCurso()+ "\t"
+                               +((Aluno)u[i]).getAno() + "\t"
+                               + "Não \t"
+                               + "Não \n"
+                               + "--------------------------------------------------------------------------------------------------------------\n\n");
+                   }
+                }   
+             }
+              else { 
+                    
+                               txtAreaTodosAlunos.append( u[i].getNome() + "\t" 
+                               + u[i].getCodUsuario() + "\t"
+                               + ((Aluno)u[i]).getCurso()+ "\t"
+                               +((Aluno)u[i]).getAno() + "\t"
+                               + "Não \t"
+                               + "Não \n"
+                               + "----------------------------------------------------------------------------------------------------------------\n\n");
+                   }
+            
+             }
+        }   
     }//GEN-LAST:event_cbTodosAlunosActionPerformed
 
     /**

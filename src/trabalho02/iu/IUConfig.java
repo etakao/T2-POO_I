@@ -36,6 +36,8 @@ public class IUConfig extends javax.swing.JDialog {
         return instancia;
     }
 
+  
+
     public void exibir(Config configuracoes){
         this.configuracoes = configuracoes;
 

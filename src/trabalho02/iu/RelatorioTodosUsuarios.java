@@ -9,22 +9,23 @@ import trabalho02.dados.Database;
 import trabalho02.modelo.Aluno;
 import trabalho02.modelo.Professor;
 import trabalho02.modelo.Usuario;
-
+import trabalho02.modelo.Emprestimo;
 /**
  *
  * @author Erick Yoshike
  */
 public class RelatorioTodosUsuarios extends javax.swing.JFrame {
+ Database db = Database.getInstance();
 
+        Usuario u[] = db.getUsuarios();
+         Emprestimo e[]= db.getEmprestimos();
     /**
      * Creates new form RelatorioTodosUsuarios
      */
     public RelatorioTodosUsuarios() {
         initComponents();
         
-        Database db = Database.getInstance();
-
-        Usuario u[] = db.getUsuarios();
+        
 
         for (int i = 0; i < db.getContU(); i++) {
             if (u[i] instanceof Aluno){
@@ -46,21 +47,21 @@ public class RelatorioTodosUsuarios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cbUsuarioAluno = new javax.swing.JComboBox<>();
-        cbUsuarioProfessor = new javax.swing.JComboBox<>();
+        cbUsuarioAluno = new javax.swing.JComboBox<String>();
+        cbUsuarioProfessor = new javax.swing.JComboBox<String>();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaTodosUsuarios = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cbUsuarioAluno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione o aluno" }));
+        cbUsuarioAluno.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o aluno" }));
         cbUsuarioAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbUsuarioAlunoActionPerformed(evt);
             }
         });
 
-        cbUsuarioProfessor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione o professor" }));
+        cbUsuarioProfessor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o professor" }));
         cbUsuarioProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbUsuarioProfessorActionPerformed(evt);
@@ -101,31 +102,92 @@ public class RelatorioTodosUsuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbUsuarioAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbUsuarioAlunoActionPerformed
-        Database db = Database.getInstance();
-
-        Usuario u[] = db.getUsuarios();
-
-        for (int j = 0; j < db.getContU(); j++) {
-            if (((String) cbUsuarioAluno.getSelectedItem()).equals(u[j].getNome())) {
-                txtAreaTodosUsuarios.setText(
-                          "Nome: " + u[j].getNome() + "\n"
-                        + "ID: " + u[j].getCodUsuario() + "\n");
-            }
-        }
+ txtAreaTodosUsuarios.append( "Nome \t ID \t Curso \t Ano \t Emprestimo \t Atraso\n\n\n" );       
+ for(int i = 0; i< db.getContU(); i++){
+     
+        if (((String)cbUsuarioAluno.getSelectedItem()).equals(u[i].getNome())){
+            int j = db.getContE();
+           if(j !=0){
+               for( j =0; j<db.getContE();j++){
+                if(u[i].getCodUsuario() == e[j].getCodUsuario()){
+                     txtAreaTodosUsuarios.append( u[i].getNome() + "\t" 
+                               + u[i].getCodUsuario() + "\t"
+                               + ((Aluno)u[i]).getCurso()+ "\t"
+                               +((Aluno)u[i]).getAno() + "\t"
+                               + "Sim \t"
+                               + "Sim \n"
+                               + "--------------------------------------------------------------------------------------------------------------\n\n");
+                 }
+            
+              
+                else { 
+                    
+                    
+                               txtAreaTodosUsuarios.append( u[i].getNome() + "\t" 
+                               + u[i].getCodUsuario() + "\t"
+                               + ((Aluno)u[i]).getCurso()+ "\t"
+                               +((Aluno)u[i]).getAno() + "\t"
+                               + "Não \t"
+                               + "Não \n"
+                               + "--------------------------------------------------------------------------------------------------------------\n\n");
+                   }
+                }   
+             }
+              else { 
+                    
+                               txtAreaTodosUsuarios.append( u[i].getNome() + "\t" 
+                               + u[i].getCodUsuario() + "\t"
+                               + ((Aluno)u[i]).getCurso()+ "\t"
+                               +((Aluno)u[i]).getAno() + "\t"
+                               + "Não \t"
+                               + "Não \n"
+                               + "----------------------------------------------------------------------------------------------------------------\n\n");
+                   }
+            
+             }
+        } 
     }//GEN-LAST:event_cbUsuarioAlunoActionPerformed
 
     private void cbUsuarioProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbUsuarioProfessorActionPerformed
-        Database db = Database.getInstance();
-
-        Usuario u[] = db.getUsuarios();
-
-        for (int j = 0; j < db.getContU(); j++) {
-            if (((String) cbUsuarioProfessor.getSelectedItem()).equals(u[j].getNome())) {
-                txtAreaTodosUsuarios.setText(
-                          "Nome: " + u[j].getNome() + "\n"
-                        + "ID: " + u[j].getCodUsuario() + "\n");
-            }
-        }
+          txtAreaTodosUsuarios.append( "Nome \t ID \t \t Emprestimo \t Atraso\n\n\n" );
+      
+        for(int i = 0; i< db.getContU(); i++){
+     
+        if (((String)cbUsuarioProfessor.getSelectedItem()).equals(u[i].getNome())){
+            int j = db.getContE();
+           if(j !=0){
+               for(j =0; j<db.getContE();j++){
+                if(u[i].getCodUsuario() == e[j].getCodUsuario()){
+                     txtAreaTodosUsuarios.append( u[i].getNome() + "\t" 
+                               + u[i].getCodUsuario() + "\t"
+                               + ((Professor)u[i]).getTitulacao()+ "\t"
+                               + "Sim \t"
+                               + "Sim \n"
+                               + "---------------------------------------------------------------------------------------\n\n");
+                 }
+            
+              
+                else { 
+                    txtAreaTodosUsuarios.append( u[i].getNome() + "\t" 
+                               + u[i].getCodUsuario() + "\t"
+                               + ((Professor)u[i]).getTitulacao()+ "\t"
+                               + "Não \t"
+                               + "Não \n"
+                               + "----------------------------------------------------------------------------------------\n\n");
+                   }
+                }   
+             }
+              else { 
+                    txtAreaTodosUsuarios.append( u[i].getNome() + "\t" 
+                               + u[i].getCodUsuario() + "\t"
+                               + ((Professor)u[i]).getTitulacao()+ "\t"
+                               + "Não \t"
+                               + "Não \n"
+                               + "----------------------------------------------------------------------------------------\n\n");
+                }
+            
+             }
+        }   
     }//GEN-LAST:event_cbUsuarioProfessorActionPerformed
 
     /**

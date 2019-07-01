@@ -95,7 +95,7 @@ public class RelatorioProfessor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNomeActionPerformed
-           txtDados.append( "Nome \t ID \t Titulação\t Emprestimo \t Atraso\n\n\n" );
+           txtDados.append( "Nome \t ID \t \t Emprestimo \t Atraso\n\n\n" );
       
         for(int i = 0; i< db.getContU(); i++){
      
