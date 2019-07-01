@@ -336,7 +336,6 @@ public class IUPrincipal extends javax.swing.JFrame {
             
         }
         JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!!");
-        carregado = true;
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
