@@ -97,6 +97,11 @@ public class IUPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Movimentação");
 
         jMenuItem4.setText("Empréstimo");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuItem5.setText("Devolução");
@@ -272,6 +277,7 @@ public class IUPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         RelatorioProfessor professor = new RelatorioProfessor();
         professor.setTitle("Relatorio de professor");
@@ -314,6 +320,14 @@ public class IUPrincipal extends javax.swing.JFrame {
         usuarios.setDefaultCloseOperation(RelatorioTodosAlunos.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 >>>>>>> Erick
+=======
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        IUEmprestimo emprestimo = new IUEmprestimo();
+        emprestimo.setTitle("Empréstimo");
+        emprestimo.setVisible(true);
+        emprestimo.setDefaultCloseOperation(IUEmprestimo.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+>>>>>>> luskas
 
     /**
      * @param args the command line arguments
