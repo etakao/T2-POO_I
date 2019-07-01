@@ -6,6 +6,7 @@ package trabalho02.controlador;
 
 import trabalho02.modelo.Biblioteca;
 import trabalho02.modelo.Config;
+import trabalho02.modelo.Emprestimo;
 import trabalho02.modelo.Usuario;
 
 /**
@@ -32,7 +33,7 @@ public class Controlador {
         biblio.addLivro(codLivro, nome, ano);
     }
     
-    public void addEmprestimo(String codEmprestimo, Usuario usuario) {
-        biblio.addEmprestimo(codEmprestimo, usuario);
+    public void addEmprestimo(Emprestimo emprestimo) {
+        biblio.addEmprestimo(emprestimo);
     }
 }

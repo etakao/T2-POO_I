@@ -324,10 +324,11 @@
         <Component class="javax.swing.JTable" name="tabelaEmprestimo">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="3" rowCount="0">
+              <Table columnCount="4" rowCount="0">
                 <Column editable="false" title="Cod Empr&#xe9;stimo" type="java.lang.String"/>
-                <Column editable="false" title="Cod Usu&#xe1;rio" type="java.lang.String"/>
                 <Column editable="false" title="Cod Livro" type="java.lang.String"/>
+                <Column editable="false" title="Cod Usuario" type="java.lang.String"/>
+                <Column editable="false" title="Data devolu&#xe7;&#xe3;o" type="java.lang.String"/>
               </Table>
             </Property>
           </Properties>

@@ -14,11 +14,19 @@ import java.util.Calendar;
  * @author Danilo Medeiros Eler
  */
 public class Emprestimo implements Serializable {
+    private static Emprestimo instancia;
     private String codEmprestimo;
     private String codUsuario;
     private Calendar dataEmprestimo; //data do emprestimo
     private Calendar dataDevolucao; //data prevista para devolucao
     private ArrayList<Item> itens;
+    
+    public static Emprestimo getInstance(){
+        if (instancia == null){
+            instancia = new Emprestimo();
+        }
+        return instancia;
+    }
 
     public Emprestimo(String codEmprestimo, Usuario usuario) {
         this.codEmprestimo = codEmprestimo;
@@ -26,7 +34,12 @@ public class Emprestimo implements Serializable {
         this.dataEmprestimo = Calendar.getInstance();
         this.dataDevolucao = Calendar.getInstance();
                 //acrestenca dias na data de emprestimo
+        this.itens = new ArrayList<>();
         this.dataDevolucao.add(Calendar.DAY_OF_MONTH, usuario.getDiasEmprestimo());        
+    }
+    
+    public Emprestimo () {
+        
     }
 
     public String getCodEmprestimo() {
@@ -70,16 +83,16 @@ public class Emprestimo implements Serializable {
     }
     
     public void addItem (Item item) {
-        if (this.itens == null) {
-            this.itens = new ArrayList<>();
-        }
-        else {
           itens.add(item);  
-        }
     }
     
-    public void possuiPendencia() {
-        
+    public boolean possuiPendencia() {
+        Calendar c = Calendar.getInstance();
+        if (c.compareTo(dataDevolucao) == 1) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
-
 }

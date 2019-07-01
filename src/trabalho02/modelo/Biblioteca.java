@@ -59,8 +59,7 @@ public class Biblioteca {
         livros.add(livro);
     }
     
-    public void addEmprestimo(String codEmprestimo, Usuario usuario) {
-        Emprestimo emprestimo = new Emprestimo(codEmprestimo, usuario);
+    public void addEmprestimo(Emprestimo emprestimo) {
         db.addEmprestimo(emprestimo);
         emprestimos.add(emprestimo);
     }

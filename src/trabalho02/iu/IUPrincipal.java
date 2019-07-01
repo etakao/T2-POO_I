@@ -105,6 +105,11 @@ public class IUPrincipal extends javax.swing.JFrame {
         jMenu2.add(jMenuItem4);
 
         jMenuItem5.setText("Devolução");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
 
         jMenuBar1.add(jMenu2);
@@ -249,6 +254,13 @@ public class IUPrincipal extends javax.swing.JFrame {
         emprestimo.setVisible(true);
         emprestimo.setDefaultCloseOperation(IUEmprestimo.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        IUDevolver devolver = new IUDevolver();
+        devolver.setTitle("Devolução");
+        devolver.setVisible(true);
+        devolver.setDefaultCloseOperation(IUEmprestimo.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,7 @@
  */
 package trabalho02.iu;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,22 +25,24 @@ import trabalho02.modelo.Usuario;
 public class IUEmprestimo extends javax.swing.JFrame {
     Biblioteca b = Biblioteca.getInstance();
     private DefaultTableModel modelo;
+    private static final DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     /**
      * Creates new form Emprestimo
      */
     public IUEmprestimo() {
         initComponents();
-        DefaultTableModel model = (DefaultTableModel)tabelaEmprestimo.getModel();
+        modelo = (DefaultTableModel) tabelaEmprestimo.getModel();
         ArrayList<Emprestimo>emprestimos = b.getEmprestimos();
-        int i=0;
-        for (Emprestimo e: emprestimos) {
-            Object[] linha = new Object[3];
-            linha[0] = e.getCodEmprestimo();
-            linha[1] = e.getCodUsuario();
-            linha[2] = e.getItens().get(i).getCodEmprestimo();
+        for (Emprestimo e1: emprestimos) {
+            for(int i=0; i<e1.getItens().size(); i++) { 
+            Object[] linha = new Object[4];
+            linha[0] = e1.getItens().get(i).getCodEmprestimo();
+            linha[1] = e1.getItens().get(i).getCodLivro();
+            linha[2] = e1.getCodUsuario();
+            linha[3] = sdf.format(e1.getDataDevolucao().getTime());
             modelo.addRow(linha);
-            
+           }
         }
         txtData.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date(System.currentTimeMillis())));
     }
@@ -271,14 +274,14 @@ public class IUEmprestimo extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cod Empréstimo", "Cod Usuário", "Cod Livro"
+                "Cod Empréstimo", "Cod Livro", "Cod Usuario", "Data devolução"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -401,17 +404,20 @@ public class IUEmprestimo extends javax.swing.JFrame {
                             if (u.getCodUsuario().equals(txtCodUser.getText())) {
                                 emprestimo = new Emprestimo(txtCodEmp.getText(), u);
                                 emprestimo.addItem(novoItem);
+                                b.addEmprestimo(emprestimo);
+                                l.emprestar();
+
+                                DefaultTableModel model;
+                                model = (DefaultTableModel) tabelaEmprestimo.getModel();
+                                Object[] linha = new Object[4];
+                                linha[0] = txtCodEmp.getText();
+                                linha[1] = txtCodigoLivro.getText();
+                                linha[2] = txtCodUser.getText();
+                                linha[3] = sdf.format(emprestimo.getDataDevolucao().getTime());
+                                model.addRow(linha);
                             }
                         }
-                        l.emprestar();
 
-                        DefaultTableModel model;
-                        model = (DefaultTableModel) tabelaEmprestimo.getModel();
-                        Object[] linha = new Object[3];
-                        linha[0] = txtCodEmp.getText();
-                        linha[1] = txtCodUser.getText();
-                        linha[2] = txtCodigoLivro.getText();
-                        model.addRow(linha);
                     }
                 }
             }
