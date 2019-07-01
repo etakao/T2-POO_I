@@ -64,7 +64,6 @@ public class RelatoriosTodosAlunos extends javax.swing.JFrame {
                                 + "--------\n");
                     }
                 }
-                System.out.println(emprestimos);
                 if (emprestimos.isEmpty()) {
                     jTextArea1.append("Código do aluno: " + u.getCodUsuario()
                             + "\nNome do aluno: " + u.getNome()
