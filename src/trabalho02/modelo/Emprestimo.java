@@ -23,7 +23,6 @@ public class Emprestimo implements Serializable {
     public Emprestimo(String codEmprestimo, Usuario usuario) {
         this.codEmprestimo = codEmprestimo;
         this.codUsuario = usuario.getCodUsuario();
-        this.itens = new ArrayList<Item>();
         this.dataEmprestimo = Calendar.getInstance();
         this.dataDevolucao = Calendar.getInstance();
                 //acrestenca dias na data de emprestimo
@@ -71,7 +70,12 @@ public class Emprestimo implements Serializable {
     }
     
     public void addItem (Item item) {
-        itens.add(item);
+        if (this.itens == null) {
+            this.itens = new ArrayList<>();
+        }
+        else {
+          itens.add(item);  
+        }
     }
     
     public void possuiPendencia() {

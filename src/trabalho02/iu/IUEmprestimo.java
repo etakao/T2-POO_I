@@ -7,20 +7,40 @@ package trabalho02.iu;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import trabalho02.modelo.Biblioteca;
+import trabalho02.modelo.Emprestimo;
+import trabalho02.modelo.Item;
+import trabalho02.modelo.Livro;
+import trabalho02.modelo.Usuario;
 
 /**
  *
  * @author luskas
  */
-public class Emprestimo extends javax.swing.JFrame {
-    LocalDate hoje = LocalDate.now();
+public class IUEmprestimo extends javax.swing.JFrame {
+    Biblioteca b = Biblioteca.getInstance();
+    private DefaultTableModel modelo;
 
     /**
      * Creates new form Emprestimo
      */
-    public Emprestimo() {
+    public IUEmprestimo() {
         initComponents();
+        DefaultTableModel model = (DefaultTableModel)tabelaEmprestimo.getModel();
+        ArrayList<Emprestimo>emprestimos = b.getEmprestimos();
+        int i=0;
+        for (Emprestimo e: emprestimos) {
+            Object[] linha = new Object[3];
+            linha[0] = e.getCodEmprestimo();
+            linha[1] = e.getCodUsuario();
+            linha[2] = e.getItens().get(i).getCodEmprestimo();
+            modelo.addRow(linha);
+            
+        }
         txtData.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date(System.currentTimeMillis())));
     }
 
@@ -42,7 +62,7 @@ public class Emprestimo extends javax.swing.JFrame {
         btnLimparL = new javax.swing.JButton();
         btnLocalizaL = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCodEmp = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtCodUser = new javax.swing.JTextField();
@@ -53,7 +73,7 @@ public class Emprestimo extends javax.swing.JFrame {
         btnLimpar = new javax.swing.JButton();
         LocalizarU = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaEmprestimo = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -141,9 +161,9 @@ public class Emprestimo extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Cabeçalho"));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtCodEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtCodEmpActionPerformed(evt);
             }
         });
 
@@ -204,7 +224,7 @@ public class Emprestimo extends javax.swing.JFrame {
                         .addGap(134, 134, 134))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCodEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
                             .addComponent(txtCodUser, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -229,7 +249,7 @@ public class Emprestimo extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -246,18 +266,30 @@ public class Emprestimo extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaEmprestimo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Cod Empréstimo", "Cod Usuário", "Cod Livro"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabelaEmprestimo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -288,9 +320,9 @@ public class Emprestimo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtCodEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodEmpActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtCodEmpActionPerformed
 
     private void txtCodUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodUserActionPerformed
         // TODO add your handling code here:
@@ -344,7 +376,48 @@ public class Emprestimo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLocalizaLActionPerformed
 
     private void btnAdicionaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionaActionPerformed
-        // TODO add your handling code here:
+        if (txtCodEmp.getText() == null || txtCodEmp.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Digite o código do empréstimo antes de adicionar!!");
+            txtCodEmp.requestFocus();
+        } else if (txtCodUser.getText() == null || txtCodUser.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Localize o usuário antes de adicionar!!");
+        } else if (txtCodigoLivro.getText() == null || txtCodigoLivro.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Localize o livro antes de adicionar!!");
+        } else {
+            ArrayList<Livro>livros=b.getLivros();
+            for (Livro l : livros) {
+                if (l.getCodLivro().equals(txtCodigoLivro.getText())) {
+                    if (l.estaEmprestado()) {
+                        JOptionPane.showMessageDialog
+                        (null, "Não foi possível realizar o empréstimo pois esse "
+                                + "livro ja está emprestado");
+                    }
+                    else {
+                        Item novoItem = new Item(txtCodEmp.getText(), 
+                                txtCodigoLivro.getText());
+                        ArrayList<Usuario> users = b.getUsuarios();
+                        Emprestimo emprestimo;
+                        for (Usuario u : users) {
+                            if (u.getCodUsuario().equals(txtCodUser.getText())) {
+                                emprestimo = new Emprestimo(txtCodEmp.getText(), u);
+                                emprestimo.addItem(novoItem);
+                            }
+                        }
+                        l.emprestar();
+
+                        DefaultTableModel model;
+                        model = (DefaultTableModel) tabelaEmprestimo.getModel();
+                        Object[] linha = new Object[3];
+                        linha[0] = txtCodEmp.getText();
+                        linha[1] = txtCodUser.getText();
+                        linha[2] = txtCodigoLivro.getText();
+                        model.addRow(linha);
+                    }
+                }
+            }
+            
+            
+        }
     }//GEN-LAST:event_btnAdicionaActionPerformed
 
     private void btnLimparLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparLActionPerformed
@@ -369,20 +442,21 @@ public class Emprestimo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Emprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IUEmprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Emprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IUEmprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Emprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IUEmprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Emprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IUEmprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Emprestimo().setVisible(true);
+                new IUEmprestimo().setVisible(true);
             }
         });
     }
@@ -402,8 +476,8 @@ public class Emprestimo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tabelaEmprestimo;
+    private javax.swing.JTextField txtCodEmp;
     private javax.swing.JTextField txtCodUser;
     private javax.swing.JTextField txtCodigoLivro;
     private javax.swing.JTextField txtData;
