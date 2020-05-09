@@ -12,19 +12,20 @@ import trabalho02.dados.Database;
  * @author Danilo Medeiros Eler
  */
 public class Biblioteca {
-    private static Biblioteca instancia;
-   private Config configuracoes;
-   private Database db = Database.getInstance();
-   private ArrayList<Usuario>usuarios;
-   private ArrayList<Livro>livros;
-   private ArrayList<Emprestimo>emprestimos;
 
-    public Biblioteca() {       
+    private static Biblioteca instancia;
+    private Config configuracoes;
+    private Database db = Database.getInstance();
+    private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+    private ArrayList<Livro> livros = new ArrayList<Livro>();
+    private ArrayList<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
+
+    public Biblioteca() {
         this.configuracoes = new Config();
     }
-    
-    public static Biblioteca getInstance(){
-        if (instancia == null){
+
+    public static Biblioteca getInstance() {
+        if (instancia == null) {
             instancia = new Biblioteca();
         }
         return instancia;
@@ -38,13 +39,13 @@ public class Biblioteca {
         this.configuracoes = configuracoes;
     }
 
-    public void addAluno(String codUsuario, String nome, String curso, int ano){
+    public void addAluno(String codUsuario, String nome, String curso, int ano) {
         Aluno aluno = new Aluno(codUsuario, nome, curso, ano, configuracoes.getDiasAluno());
         db.addUsuario(aluno);
         usuarios.add(aluno);
     }
 
-    public void addProfessor(String codUsuario, String nome, String titulacao){
+    public void addProfessor(String codUsuario, String nome, String titulacao) {
         Professor professor = new Professor(codUsuario, nome, titulacao, configuracoes.getDiasProfessor());
         db.addUsuario(professor);
         usuarios.add(professor);
@@ -55,7 +56,7 @@ public class Biblioteca {
         db.addLivro(livro);
         livros.add(livro);
     }
-    
+
     public void addEmprestimo(String codEmprestimo, Usuario usuario) {
         Emprestimo emprestimo = new Emprestimo(codEmprestimo, usuario);
         db.addEmprestimo(emprestimo);
@@ -73,9 +74,5 @@ public class Biblioteca {
     public ArrayList<Emprestimo> getEmprestimos() {
         return emprestimos;
     }
-    
-    
-
-    
 
 }
